@@ -9,6 +9,15 @@ defaults:
     values:
       layout: "project"
 
+exclude:
+  - "*.config.js"
+  - "Gemfile*"
+  - "package*.json"
+  - "yarn.lock"
+  - "assets/css"
+  - "assets/js"
+  - "node_modules"
+
 plugins:
   # from github pages (included for local dev)
   - jekyll-default-layout
@@ -19,8 +28,3 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-postcss
-  - jekyll-purgecss
-
-# output directory for purgecss
-css_dir: "assets/css"

@@ -1,26 +1,26 @@
----
----
-/* Front matter is necessary for Jekyll */
-
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
 /* Write your styles below this line. */
 
-#content h1 {
-    @apply text-xl;
-}
+#content {
 
-#content h2 {
-    @apply text-lg;
-}
+    h1 {
+        @apply text-xl;
+    }
 
-#content li {
-    @apply list-disc ml-8;
-}
+    h2 {
+        @apply text-lg;
+    }
 
-#content p {
-    @apply m-4;
+    li {
+        @apply list-disc ml-8;
+    }
+
+    p {
+        @apply m-4;
+    }
+
 }
 
 /* Write your styles above this line. */
