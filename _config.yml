@@ -1,1 +1,26 @@
-theme: jekyll-theme-minimal
+collections:
+  projects:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+
+plugins:
+  # from github pages (included for local dev)
+  - jekyll-default-layout
+  - jekyll-optional-front-matter
+  - jekyll-titles-from-headings
+  - jekyll-relative-links
+  # project specific
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-postcss
+  - jekyll-purgecss
+
+# output directory for purgecss
+css_dir: "assets/css"

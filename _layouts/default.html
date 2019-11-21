@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ page.title }}</title>
+        <link rel="stylesheet" href="/assets/css/site.css">
+        {% feed_meta %}
+        {% seo %}
+    </head>
+    <body>
+        <header class="flex bg-gray-500 p-4">
+            <a href="/" ><img src="/assets/images/jvb_logo.svg" alt="JvB logo" class="h-24 " /></a>
+            {% include navigation.html %}
+        </header>
+        <section id="content" class="bg-gray-200 p-12">
+            {{ content }}
+        </section>
+        {% if jekyll.environment == 'production' %}
+            {% include analytics.html %}
+        {% endif %}
+    </body>
+</html>
