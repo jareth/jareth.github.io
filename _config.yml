@@ -13,6 +13,7 @@ exclude:
   - "*.config.js"
   - "Gemfile*"
   - "package*.json"
+  - "README.md"
   - "yarn.lock"
   - "assets/css"
   - "assets/js"
