@@ -4,12 +4,15 @@
         <meta charset="utf-8">
         <title>{{ page.title }}</title>
         <link rel="stylesheet" href="{{ site.data.manifest['main.css'] }}">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
         {% feed_meta %}
         {% seo %}
     </head>
-    <body>
+    <body class="font-sans">
         <header class="flex bg-gray-500 p-4">
-            <a href="/" ><img src="/assets/images/jvb_logo.svg" alt="JvB logo" class="h-24 " /></a>
+            <a href="/" >
+                <img src="/assets/images/jvb_logo.svg" alt="JvB logo" class="inline h-24 -mb-8" />
+            </a>
             {% include navigation.html %}
         </header>
         <section id="content" class="bg-gray-200 p-12">

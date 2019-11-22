@@ -1,26 +1,31 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
+@tailwind base;
+
+h1 {
+    @apply text-2xl;
+}
+
+h2 {
+    @apply text-xl;
+}
+
+h3 {
+    @apply text-lg;
+}
+
+ol {
+    @apply list-decimal list-inside;
+}
+
+ul {
+    @apply list-disc list-inside;
+}
+
+@tailwind components;
 
 /* Write your styles below this line. */
 
-#content {
-
-    h1 {
-        @apply text-xl;
-    }
-
-    h2 {
-        @apply text-lg;
-    }
-
-    li {
-        @apply list-disc ml-8;
-    }
-
-    p {
-        @apply m-4;
-    }
-
+#content > * {
+    @apply m-4;
 }
 
 /* Write your styles above this line. */

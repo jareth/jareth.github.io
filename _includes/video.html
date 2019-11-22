@@ -1,0 +1,14 @@
+<video {% if include.id %} id="{{ include.id }}" {% endif %}
+       {% if include.width %} width="{{ include.width }}" {% endif %}
+       {% if include.height %} height="{{ include.height }}" {% endif %}
+       {% if include.poster %} poster="{{ include.poster }}" {% endif %}
+       {% if include.preload %} preload="{{ include.preload }}" {% endif %}
+       {% if include.class %} class="{{ include.class }}" {% endif %}
+       controls="{{ include.controls }}">
+    {% assign video_types = "mp4, webm, ogg, f4v" | split: ", " %}
+    {% for type in video_types %}
+        {% if include[type] %}
+            <source src="{{ include[type] }}" type="video/{{ type }}">
+        {% endif %}
+    {% endfor %}
+</video>
