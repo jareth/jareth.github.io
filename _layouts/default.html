@@ -9,13 +9,13 @@
         {% seo %}
     </head>
     <body class="font-sans">
-        <header class="flex bg-gray-500 p-4">
+        <header class="flex bg-teal-300 p-4 shadow-lg">
             <a href="/" >
                 <img src="/assets/images/jvb_logo.svg" alt="JvB logo" class="inline h-24 -mb-8" />
             </a>
             {% include navigation.html %}
         </header>
-        <section id="content" class="bg-gray-200 p-12">
+        <section id="content" class="p-12">
             {{ content }}
         </section>
         {% if jekyll.environment == 'production' %}
