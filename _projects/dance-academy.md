@@ -2,7 +2,7 @@
 short_name: dance-academy
 name: Dance Academy Online
 client: Werner Film Productions / ZDF Enterprises / ABC3
-preview: http://assets.vanbone.com/images/DA_proj.jpg
+preview: https://assets.vanbone.com/images/DA_proj.jpg
 ---
 
 A companion site for the television series featuring exploration of the locations from the show and exclusive content 
@@ -32,15 +32,15 @@ Television Companion Site.
 
 Due to the success we secured the development of the online components of the second and third seasons.
 
-![Interactive panoramas with item hotspots](http://assets.vanbone.com/images/DA_1.jpg "Interactive panoramas with item hotspots")
-!['Email' application on a characters laptop](http://assets.vanbone.com/images/DA_2.jpg "'Email' application on a characters laptop")
-![Reading a characters text messages](http://assets.vanbone.com/images/DA_3.jpg "Reading a characters text messages")
+![Interactive panoramas with item hotspots](https://assets.vanbone.com/images/DA_1.jpg "Interactive panoramas with item hotspots")
+!['Email' application on a characters laptop](https://assets.vanbone.com/images/DA_2.jpg "'Email' application on a characters laptop")
+![Reading a characters text messages](https://assets.vanbone.com/images/DA_3.jpg "Reading a characters text messages")
 
 {% include video.html
     width=800 height=400
-    poster="http://assets.vanbone.com/images/DA_poster.jpg"
-    mp4="http://assets.vanbone.com/videos/DanceAcademy_SBS.mp4"
-    webm="http://assets.vanbone.com/videos/DanceAcademy_SBS.webm"
-    ogg="http://assets.vanbone.com/videos/DanceAcademy_SBS.ogv"
-    f4v="http://assets.vanbone.com/videos/DanceAcademy_SBS.flv"
+    poster="https://assets.vanbone.com/images/DA_poster.jpg"
+    mp4="https://assets.vanbone.com/videos/DanceAcademy_SBS.mp4"
+    webm="https://assets.vanbone.com/videos/DanceAcademy_SBS.webm"
+    ogg="https://assets.vanbone.com/videos/DanceAcademy_SBS.ogv"
+    f4v="https://assets.vanbone.com/videos/DanceAcademy_SBS.flv"
 %}

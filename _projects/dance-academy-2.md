@@ -2,7 +2,7 @@
 short_name: dance-academy-2
 name: Dance Academy Online - 2nd Year
 client: Werner Film Productions / ZDF Enterprises / ABC3
-preview: http://assets.vanbone.com/images/DA2_proj.jpg
+preview: https://assets.vanbone.com/images/DA2_proj.jpg
 ---
 
 A companion site for the television series featuring exploration of the locations from the show and exclusive content 
@@ -31,7 +31,7 @@ Average visit duration dropped slightly to over 13 minutes due to a streamlined 
 actually increased. Continuing the awards success, the project also won the 2013 KidScreen Award for Best Television 
 Companion Site.
 
-![Seamless video integration](http://assets.vanbone.com/images/DA2_3.jpg "Seamless video integration")
-![New look navigation](http://assets.vanbone.com/images/DA2_4.jpg "New look navigation")
-![Room customisation](http://assets.vanbone.com/images/DA2_1.jpg "Room customisation")
-![User profile customisation](http://assets.vanbone.com/images/DA2_2.jpg "User profile customisation")
+![Seamless video integration](https://assets.vanbone.com/images/DA2_3.jpg "Seamless video integration")
+![New look navigation](https://assets.vanbone.com/images/DA2_4.jpg "New look navigation")
+![Room customisation](https://assets.vanbone.com/images/DA2_1.jpg "Room customisation")
+![User profile customisation](https://assets.vanbone.com/images/DA2_2.jpg "User profile customisation")

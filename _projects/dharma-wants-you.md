@@ -2,7 +2,7 @@
 short_name: dharma-wants-you
 name: Lost - Dharma Wants You
 client: ABC Studios
-preview: http://assets.vanbone.com/images/DWY_proj.jpg
+preview: https://assets.vanbone.com/images/DWY_proj.jpg
 ---
 
 A pre-season promotion site for the television series featuring puzzles, competition leaderboards, and exclusive plot
@@ -33,15 +33,15 @@ Multimodal Production.
 
 [1]: http://lostpedia.wikia.com/wiki/Dharma_Wants_You "Dharma Wants you on Lostpedia"
 
-![Home screen](http://assets.vanbone.com/images/DWY_4.jpg "Home screen")
-![3D transition](http://assets.vanbone.com/images/DWY_3.jpg "3D transition")
-![A test instructions screen](http://assets.vanbone.com/images/DWY_1.jpg "A test instructions screen")
+![Home screen](https://assets.vanbone.com/images/DWY_4.jpg "Home screen")
+![3D transition](https://assets.vanbone.com/images/DWY_3.jpg "3D transition")
+![A test instructions screen](https://assets.vanbone.com/images/DWY_1.jpg "A test instructions screen")
 
 {% include video.html
     width=800 height=400
-    poster="http://assets.vanbone.com/images/DWY_4.jpg"
-    mp4="http://assets.vanbone.com/videos/DWY_Promo.mp4"
-    webm="http://assets.vanbone.com/videos/DWY_Promo.webm"
-    ogg="http://assets.vanbone.com/videos/DWY_Promo.ogv"
-    f4v="http://assets.vanbone.com/videos/DWY_Promo.flv"
+    poster="https://assets.vanbone.com/images/DWY_4.jpg"
+    mp4="https://assets.vanbone.com/videos/DWY_Promo.mp4"
+    webm="https://assets.vanbone.com/videos/DWY_Promo.webm"
+    ogg="https://assets.vanbone.com/videos/DWY_Promo.ogv"
+    f4v="https://assets.vanbone.com/videos/DWY_Promo.flv"
 %}
