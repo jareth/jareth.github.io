@@ -24,8 +24,13 @@ ul {
 
 /* Write your styles below this line. */
 
-#content > * {
-    @apply m-4;
+#content {
+    p, h1, h2, h3 {
+        @apply mb-4;
+    }
+    ul {
+        @apply mb-4 ml-4;
+    }
 }
 
 /* Write your styles above this line. */

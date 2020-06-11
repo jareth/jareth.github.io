@@ -8,16 +8,17 @@
         {% feed_meta %}
         {% seo %}
     </head>
-    <body class="font-sans">
+    <body class="font-sans flex flex-col min-h-screen">
         <header class="flex bg-teal-300 p-4 shadow-lg">
             <a href="/" >
                 <img src="/assets/images/jvb_logo.svg" alt="JvB logo" class="inline h-24 -mb-8" />
             </a>
             {% include navigation.html %}
         </header>
-        <section id="content" class="p-12">
+        <section id="content" class="p-12 flex-grow">
             {{ content }}
         </section>
+        <footer class="text-center bg-teal-300 p-4 shadow-lg">© 2020 Jareth van Bone. All project assets remain property of the original IP owner.</footer>
         {% if jekyll.environment == 'production' %}
             {% include analytics.html %}
         {% endif %}
