@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
     <head>
+        {% if jekyll.environment == 'production' %}
+        {% include analytics.html %}
+        {% endif %}
         <meta charset="utf-8">
         <title>{{ page.title }}</title>
         <link rel="stylesheet" href="{{ site.data.manifest['main.css'] }}">
@@ -19,8 +22,5 @@
             {{ content }}
         </section>
         <footer class="text-center bg-teal-300 p-4 shadow-lg">© 2020 Jareth van Bone. All project assets remain property of the original IP owner.</footer>
-        {% if jekyll.environment == 'production' %}
-            {% include analytics.html %}
-        {% endif %}
     </body>
 </html>
