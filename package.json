@@ -6,19 +6,19 @@
     "watch": "NODE_ENV=development yarn run webpack --watch"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^1.3.0",
-    "autoprefixer": "^9.7.2",
-    "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.2.0",
-    "cssnano": "^4.1.10",
-    "mini-css-extract-plugin": "^0.8.0",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "autoprefixer": "^10.4.18",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.10.0",
+    "cssnano": "^6.1.0",
+    "mini-css-extract-plugin": "^2.8.1",
     "postcss": "^8.4.31",
-    "postcss-loader": "^3.0.0",
-    "postcss-nested": "^4.2.1",
-    "style-loader": "^1.0.0",
-    "tailwindcss": "^1.1.3",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-manifest-plugin": "^2.2.0"
+    "postcss-loader": "^8.1.1",
+    "postcss-nested": "^6.0.1",
+    "style-loader": "^3.3.4",
+    "tailwindcss": "^3.4.1",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-manifest-plugin": "^5.0.0"
   }
 }

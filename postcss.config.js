@@ -1,11 +1,13 @@
 module.exports = {
     plugins: [
-        require('postcss-nested'),
+        require('tailwindcss/nesting'),
         require('tailwindcss'),
         require('cssnano')(),
         require('autoprefixer'),
         ...process.env.NODE_ENV === 'production'
-            ? [require('@fullhuman/postcss-purgecss')()]
+            ? [require('@fullhuman/postcss-purgecss')({
+                content: ['./_site/**/*.html']
+              })]
             : []
     ]
 };
