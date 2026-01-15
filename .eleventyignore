@@ -1,0 +1,7 @@
+node_modules/
+README.md
+CLAUDE.md
+eleventy-migration.xml
+_site/
+dist/
+*.config.js

@@ -6,6 +6,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Jekyll + Tailwind CSS portfolio website deployed via GitHub Pages.
 
+## Eleventy Migration Status
+
+**Branch:** `eleventy-migration`
+
+Migration from Jekyll to Eleventy is in progress. See `eleventy-migration.xml` for full plan.
+
+### Completed Phases
+- [x] **Phase 1: Install and Configure Eleventy**
+  - Installed `@11ty/eleventy`, `@11ty/eleventy-plugin-rss`, `@11ty/eleventy-navigation`
+  - Created `.eleventy.js` configuration
+  - Created `.eleventyignore`
+  - Installed `js-yaml` for YAML data file support
+
+### Remaining Phases
+- [ ] Phase 2: Update Templates for Eleventy
+- [ ] Phase 3: Update Front Matter and Data
+- [ ] Phase 4: Update Build Pipeline
+- [ ] Phase 5: SEO and Feed Configuration
+- [ ] Phase 6: GitHub Actions Deployment
+- [ ] Phase 7: Cleanup
+
 ## Build Commands
 
 ### Setup
