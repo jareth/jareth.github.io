@@ -4,57 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Jekyll + Tailwind CSS portfolio website deployed via GitHub Pages.
-
-## Eleventy Migration Status
-
-**Branch:** `eleventy-migration`
-
-Migration from Jekyll to Eleventy is in progress. See `eleventy-migration.xml` for full plan.
-
-### Completed Phases
-- [x] **Phase 1: Install and Configure Eleventy**
-  - Installed `@11ty/eleventy`, `@11ty/eleventy-plugin-rss`, `@11ty/eleventy-navigation`
-  - Created `.eleventy.js` configuration
-  - Created `.eleventyignore`
-  - Installed `js-yaml` for YAML data file support
-
-- [x] **Phase 2: Update Templates for Eleventy**
-  - Updated `_layouts/default.html` - environment check, data access, include syntax
-  - Updated `_layouts/project.html` and `_layouts/post.html` - front matter access
-  - Updated `_includes/navigation.html` - data access
-  - Updated `_includes/video.html` - rewrote for Eleventy's LiquidJS
-  - Updated `projects.html` and `blog.html` - collection syntax
-  - Updated include syntax in 4 project files with video embeds
-  - Created `_projects/_projects.json` - permalink config for `/projects/[slug]/`
-  - Created `_posts/_posts.json` - permalink config for `/blog/[slug]/`
-
-- [x] **Phase 3: Update Front Matter and Data**
-  - Created `_data/site.yml` - site metadata (title, description, url)
-  - Permalink configuration via directory data files (cleaner than per-file permalinks)
-  - `_data/navigation.yml` compatible with Eleventy as-is
-
-- [x] **Phase 4: Update Build Pipeline**
-  - Installed `npm-run-all` for parallel script execution
-  - Added new scripts: `build`, `build:html`, `build:css`, `dev`, `dev:html`, `dev:css`, `start`
-  - Build runs: Eleventy → Webpack (PurgeCSS) → Eleventy (for updated manifest)
-  - Config files (`tailwind.config.js`, `postcss.config.js`) unchanged - already scan `_site/`
-
-- [x] **Phase 5: SEO and Feed Configuration**
-  - Created `feed.njk` - Atom RSS feed using eleventy-plugin-rss filters
-  - Created `sitemap.njk` - XML sitemap listing all pages
-  - Added SEO meta tags to `_layouts/default.html` (description, og:*, canonical)
-  - Added custom `date` filter to `.eleventy.js` for Nunjucks date formatting
-  - Added `njk` to templateFormats in `.eleventy.js`
-
-- [x] **Phase 6: GitHub Actions Deployment**
-  - Created `.github/workflows/deploy.yml` - automated build and deploy workflow
-  - Workflow triggers on push to `master` or manual dispatch
-  - Builds Eleventy HTML, then CSS with PurgeCSS, uploads `_site` artifact
-  - **Manual step:** Configure GitHub Pages source to "GitHub Actions" in repo settings
-
-### Remaining Phases
-- [ ] Phase 7: Cleanup
+Eleventy + Tailwind CSS portfolio website deployed via GitHub Pages.
 
 ## Build Commands
 
@@ -65,13 +15,13 @@ Always use `yarn run` commands instead of `npx` commands.
 yarn install
 ```
 
-### Local Development (Eleventy)
+### Local Development
 ```bash
 yarn run dev
 ```
 Runs Eleventy dev server and Webpack watch in parallel. Site available at `http://localhost:8080`
 
-### Production Build (Eleventy)
+### Production Build
 ```bash
 yarn run build
 ```
@@ -83,10 +33,6 @@ Runs: Eleventy → Webpack (with PurgeCSS) → Eleventy (for manifest update)
 - `yarn run build:css` - Build CSS with Webpack/PurgeCSS
 - `yarn run dev` - Development mode (parallel HTML + CSS watching)
 - `yarn run start` - Alias for dev
-
-### Legacy Jekyll Commands (until cleanup)
-- `yarn run prod` - Production CSS build only
-- `yarn run watch` - Development CSS watch only
 
 ## Architecture
 
@@ -108,6 +54,10 @@ Images and videos hosted at `https://assets.vanbone.com/` - not in this repo.
 
 ## Deployment
 
-Commit changes including `dist/` folder, push to GitHub. GitHub Pages rebuilds automatically.
+Push to `master` branch triggers GitHub Actions workflow (`.github/workflows/deploy.yml`):
+1. Installs dependencies
+2. Builds Eleventy HTML
+3. Builds CSS with PurgeCSS
+4. Deploys `_site/` to GitHub Pages
 
-**Critical:** The `dist/` folder must be committed. The `_site/` folder is gitignored.
+Both `_site/` and `dist/` are gitignored - builds happen in CI.

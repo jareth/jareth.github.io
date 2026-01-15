@@ -7,9 +7,7 @@
     "dev:css": "NODE_ENV=development yarn run webpack --watch",
     "dev:html": "eleventy --serve",
     "dev": "npm-run-all --parallel dev:*",
-    "start": "yarn run dev",
-    "prod": "NODE_ENV=production yarn run webpack",
-    "watch": "NODE_ENV=development yarn run webpack --watch"
+    "start": "yarn run dev"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",

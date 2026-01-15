@@ -1,27 +1,25 @@
-jareth.github.io
-================
+vanbone.com
+===========
 
 Personal portfolio website deployed via GitHub Pages.
 
-Jekyll + Tailwind setup is mostly based on [this blog post by Frank de Jonge][1] and the [example jekyll setup from Tailwindcss][2].
-
-[1]: https://blog.frankdejonge.nl/setting-up-docs-with-tailwind-css-and-github-pages/ "Setting up docs with Tailwind CSS & GitHub Pages"
-[2]: https://github.com/tailwindcss/setup-examples/tree/master/examples/jekyll "Jekyll with Tailwind"
-
 ## Technology Stack
 
-- **Jekyll** - Static site generator (GitHub Pages compatible)
-- **Tailwind CSS** (v3.4.1) - Utility-first CSS framework
-- **Webpack** (v5.90.3) - Asset bundler
+- **Eleventy** (v3) - Static site generator
+- **Tailwind CSS** (v3.4) - Utility-first CSS framework
+- **Webpack** (v5) - Asset bundler
 - **PostCSS** - CSS processing with autoprefixer, cssnano, and PurgeCSS
+- **GitHub Actions** - Automated build and deployment
 
 ## Directory Structure
 
 ```
-├── _config.yml              # Jekyll configuration
+├── .eleventy.js             # Eleventy configuration
+├── .eleventyignore          # Files excluded from Eleventy processing
 ├── _data/
 │   ├── manifest.yml         # Webpack manifest (auto-generated)
-│   └── navigation.yml       # Site navigation structure
+│   ├── navigation.yml       # Site navigation structure
+│   └── site.yml             # Site metadata (title, description, url)
 ├── _includes/               # Reusable components (navigation, video, analytics)
 ├── _layouts/                # Page templates (default, post, project)
 ├── _posts/                  # Blog posts (YYYY-MM-DD-title.md)
@@ -29,42 +27,44 @@ Jekyll + Tailwind setup is mostly based on [this blog post by Frank de Jonge][1]
 ├── assets/
 │   ├── css/site.css         # Main CSS entry point (Tailwind imports)
 │   └── images/              # Local image assets
-├── dist/                    # Webpack output (committed to repo)
-├── _site/                   # Jekyll build output (gitignored)
+├── dist/                    # Webpack output (gitignored, built in CI)
+├── _site/                   # Eleventy build output (gitignored)
 ├── index.html               # Homepage
 ├── about.md                 # About page
 ├── projects.html            # Projects listing
-└── blog.html                # Blog listing (not linked in nav)
+├── blog.html                # Blog listing (not linked in nav)
+├── feed.njk                 # Atom RSS feed
+└── sitemap.njk              # XML sitemap
 ```
 
 ## Local Development
 
-Requires Ruby and Yarn. Setup tools:
+Requires Node.js 18+ and Yarn.
 
-    bundle install
-    yarn install
+```bash
+yarn install
+yarn run dev
+```
 
-For local development you can run both webpack watch and jekyll serve:
+Site will be available at `http://localhost:8080`
 
-    yarn run watch & bundle exec jekyll serve && fg
-
-Site will be available at `http://localhost:4000`
+This runs Eleventy dev server and Webpack watch in parallel.
 
 ## Production Build
 
-For production we use PurgeCSS to remove unused CSS rules, but this requires the final HTML to be present in Jekyll's build folder (`_site`). So first build Jekyll in production mode:
+```bash
+yarn run build
+```
 
-    JEKYLL_ENV=production bundle exec jekyll build
-
-Then build Webpack in production mode:
-
-    yarn run prod
+Runs: Eleventy → Webpack (with PurgeCSS) → Eleventy (for manifest update)
 
 ### npm Scripts
 
-- `yarn run prod` - Production build with PurgeCSS and minification
-- `yarn run dev` - Development build
-- `yarn run watch` - Development build with file watching
+- `yarn run build` - Full production build
+- `yarn run build:html` - Build HTML with Eleventy
+- `yarn run build:css` - Build CSS with Webpack/PurgeCSS
+- `yarn run dev` - Development mode (parallel HTML + CSS watching)
+- `yarn run start` - Alias for dev
 
 ## Content Management
 
@@ -82,6 +82,8 @@ preview: https://assets.vanbone.com/images/myproject_proj.jpg
 
 Project description and content goes here...
 ```
+
+URLs are automatically generated as `/projects/[short_name]/`.
 
 ### Adding a Blog Post
 
@@ -133,10 +135,10 @@ Add custom styles to `assets/css/site.css` after the Tailwind directives:
 
 ## Asset Pipeline
 
-Webpack compiles CSS and generates hashed filenames for cache busting. The manifest at `_data/manifest.yml` is auto-generated and used by Jekyll layouts:
+Webpack compiles CSS and generates hashed filenames for cache busting. The manifest at `_data/manifest.yml` is auto-generated and used by Eleventy layouts:
 
 ```liquid
-<link rel="stylesheet" href="{{ site.data.manifest['main.css'] }}">
+<link rel="stylesheet" href="{{ manifest['main.css'] }}">
 ```
 
 ### External Assets
@@ -146,29 +148,26 @@ Images and videos are hosted externally at `https://assets.vanbone.com/` to keep
 Use the `video.html` include for responsive video embeds:
 
 ```liquid
-{% include video.html
-    width=800 height=400
-    poster="https://assets.vanbone.com/images/example.jpg"
-    mp4="https://assets.vanbone.com/videos/example.mp4"
-    webm="https://assets.vanbone.com/videos/example.webm"
+{% include "video.html",
+    width: 800, height: 400,
+    poster: "https://assets.vanbone.com/images/example.jpg",
+    mp4: "https://assets.vanbone.com/videos/example.mp4",
+    webm: "https://assets.vanbone.com/videos/example.webm"
 %}
 ```
 
 ## Deployment
 
-1. Make changes to source files
-2. Run production build (Jekyll first, then Webpack)
-3. Commit changes including the `dist/` folder
-4. Push to repository
-5. GitHub Pages automatically rebuilds and deploys
+Automated via GitHub Actions (`.github/workflows/deploy.yml`):
 
-**Important:** The `dist/` folder must be committed. The `_site/` folder is gitignored and regenerated by GitHub Pages.
+1. Push changes to `master` branch
+2. GitHub Actions builds the site (Eleventy + Webpack)
+3. Site is deployed to GitHub Pages
+
+Both `_site/` and `dist/` are gitignored - all builds happen in CI.
 
 ## Updating Dependencies
 
 ```bash
-bundle update        # Update Ruby gems
-yarn upgrade         # Update Node packages
+yarn upgrade
 ```
-
-Test after updates, especially the `github-pages` gem which may have specific version requirements.
