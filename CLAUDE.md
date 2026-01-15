@@ -47,8 +47,13 @@ Migration from Jekyll to Eleventy is in progress. See `eleventy-migration.xml` f
   - Added custom `date` filter to `.eleventy.js` for Nunjucks date formatting
   - Added `njk` to templateFormats in `.eleventy.js`
 
+- [x] **Phase 6: GitHub Actions Deployment**
+  - Created `.github/workflows/deploy.yml` - automated build and deploy workflow
+  - Workflow triggers on push to `master` or manual dispatch
+  - Builds Eleventy HTML, then CSS with PurgeCSS, uploads `_site` artifact
+  - **Manual step:** Configure GitHub Pages source to "GitHub Actions" in repo settings
+
 ### Remaining Phases
-- [ ] Phase 6: GitHub Actions Deployment
 - [ ] Phase 7: Cleanup
 
 ## Build Commands
