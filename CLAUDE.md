@@ -19,9 +19,19 @@ Migration from Jekyll to Eleventy is in progress. See `eleventy-migration.xml` f
   - Created `.eleventyignore`
   - Installed `js-yaml` for YAML data file support
 
+- [x] **Phase 2: Update Templates for Eleventy**
+  - Updated `_layouts/default.html` - environment check, data access, include syntax
+  - Updated `_layouts/project.html` and `_layouts/post.html` - front matter access
+  - Updated `_includes/navigation.html` - data access
+  - Updated `_includes/video.html` - rewrote for Eleventy's LiquidJS
+  - Updated `projects.html` and `blog.html` - collection syntax
+  - Updated include syntax in 4 project files with video embeds
+  - Created `_data/site.yml` (from Phase 3) - site metadata
+  - Created `_projects/_projects.json` - permalink config for `/projects/[slug]/`
+  - Created `_posts/_posts.json` - permalink config for `/blog/[slug]/`
+
 ### Remaining Phases
-- [ ] Phase 2: Update Templates for Eleventy
-- [ ] Phase 3: Update Front Matter and Data
+- [ ] Phase 3: Update Front Matter and Data (partially done - site.yml created)
 - [ ] Phase 4: Update Build Pipeline
 - [ ] Phase 5: SEO and Feed Configuration
 - [ ] Phase 6: GitHub Actions Deployment
