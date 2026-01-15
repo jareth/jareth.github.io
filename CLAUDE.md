@@ -65,7 +65,7 @@ Always use `yarn run` commands instead of `npx` commands.
 yarn install
 ```
 
-### Local Development (Eleventy)
+### Local Development
 ```bash
 yarn run dev
 ```
