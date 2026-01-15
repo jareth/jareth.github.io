@@ -36,11 +36,12 @@ Due to the success we secured the development of the online components of the se
 !['Email' application on a characters laptop](https://assets.vanbone.com/images/DA_2.jpg "'Email' application on a characters laptop")
 ![Reading a characters text messages](https://assets.vanbone.com/images/DA_3.jpg "Reading a characters text messages")
 
-{% include video.html
-    width=800 height=400
-    poster="https://assets.vanbone.com/images/DA_poster.jpg"
-    mp4="https://assets.vanbone.com/videos/DanceAcademy_SBS.mp4"
-    webm="https://assets.vanbone.com/videos/DanceAcademy_SBS.webm"
-    ogg="https://assets.vanbone.com/videos/DanceAcademy_SBS.ogv"
-    f4v="https://assets.vanbone.com/videos/DanceAcademy_SBS.flv"
+{% include video.html,
+    width: 800,
+    height: 400,
+    poster: "https://assets.vanbone.com/images/DA_poster.jpg",
+    mp4: "https://assets.vanbone.com/videos/DanceAcademy_SBS.mp4",
+    webm: "https://assets.vanbone.com/videos/DanceAcademy_SBS.webm",
+    ogg: "https://assets.vanbone.com/videos/DanceAcademy_SBS.ogv",
+    f4v: "https://assets.vanbone.com/videos/DanceAcademy_SBS.flv"
 %}

@@ -1,15 +1,14 @@
 <!doctype html>
 <html lang="en">
     <head>
-        {% if jekyll.environment == 'production' %}
+        {% if eleventy.env.runMode == 'build' %}
         {% include analytics.html %}
         {% endif %}
         <meta charset="utf-8">
-        <title>{{ page.title }}</title>
-        <link rel="stylesheet" href="{{ site.data.manifest['main.css'] }}">
+        <title>{{ title | default: site.title }}</title>
+        <link rel="stylesheet" href="{{ manifest['main.css'] }}">
         <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
-        {% feed_meta %}
-        {% seo %}
+        <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="{{ site.title }}">
     </head>
     <body class="font-sans flex flex-col min-h-screen">
         <header class="flex bg-teal-300 p-4 shadow-lg">

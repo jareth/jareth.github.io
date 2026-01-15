@@ -1,14 +1,2 @@
-<video {% if include.id %} id="{{ include.id }}" {% endif %}
-       {% if include.width %} width="{{ include.width }}" {% endif %}
-       {% if include.height %} height="{{ include.height }}" {% endif %}
-       {% if include.poster %} poster="{{ include.poster }}" {% endif %}
-       {% if include.preload %} preload="{{ include.preload }}" {% endif %}
-       {% if include.class %} class="{{ include.class }}" {% endif %}
-       controls="{{ include.controls }}">
-    {% assign video_types = "mp4, webm, ogg, f4v" | split: ", " %}
-    {% for type in video_types %}
-        {% if include[type] %}
-            <source src="{{ include[type] }}" type="video/{{ type }}">
-        {% endif %}
-    {% endfor %}
-</video>
+{% comment %}TODO: Fix multiline formatting - this template is on one line due to Eleventy's LiquidJS whitespace handling{% endcomment %}
+<video{% if id %} id="{{ id }}"{% endif %}{% if width %} width="{{ width }}"{% endif %}{% if height %} height="{{ height }}"{% endif %}{% if poster %} poster="{{ poster }}"{% endif %}{% if preload %} preload="{{ preload }}"{% endif %}{% if class %} class="{{ class }}"{% endif %} controls>{% if mp4 %}<source src="{{ mp4 }}" type="video/mp4">{% endif %}{% if webm %}<source src="{{ webm }}" type="video/webm">{% endif %}{% if ogg %}<source src="{{ ogg }}" type="video/ogg">{% endif %}{% if f4v %}<source src="{{ f4v }}" type="video/x-f4v">{% endif %}</video>

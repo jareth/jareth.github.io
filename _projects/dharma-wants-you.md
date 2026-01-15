@@ -37,11 +37,12 @@ Multimodal Production.
 ![3D transition](https://assets.vanbone.com/images/DWY_3.jpg "3D transition")
 ![A test instructions screen](https://assets.vanbone.com/images/DWY_1.jpg "A test instructions screen")
 
-{% include video.html
-    width=800 height=400
-    poster="https://assets.vanbone.com/images/DWY_4.jpg"
-    mp4="https://assets.vanbone.com/videos/DWY_Promo.mp4"
-    webm="https://assets.vanbone.com/videos/DWY_Promo.webm"
-    ogg="https://assets.vanbone.com/videos/DWY_Promo.ogv"
-    f4v="https://assets.vanbone.com/videos/DWY_Promo.flv"
+{% include video.html,
+    width: 800,
+    height: 400,
+    poster: "https://assets.vanbone.com/images/DWY_4.jpg",
+    mp4: "https://assets.vanbone.com/videos/DWY_Promo.mp4",
+    webm: "https://assets.vanbone.com/videos/DWY_Promo.webm",
+    ogg: "https://assets.vanbone.com/videos/DWY_Promo.ogv",
+    f4v: "https://assets.vanbone.com/videos/DWY_Promo.flv"
 %}
