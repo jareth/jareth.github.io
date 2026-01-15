@@ -27,6 +27,16 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("_posts/*.md");
   });
 
+  // Custom date filter for Nunjucks (YYYY-MM-DD format)
+  eleventyConfig.addFilter("date", function(dateObj, format) {
+    if (!dateObj) return "";
+    const d = new Date(dateObj);
+    if (format === "%Y-%m-%d") {
+      return d.toISOString().split("T")[0];
+    }
+    return d.toISOString();
+  });
+
   // Liquid options (for Jekyll compatibility)
   eleventyConfig.setLiquidOptions({
     dynamicPartials: false,
@@ -41,7 +51,7 @@ module.exports = function(eleventyConfig) {
       layouts: "_layouts",
       data: "_data"
     },
-    templateFormats: ["html", "md", "liquid"],
+    templateFormats: ["html", "md", "liquid", "njk"],
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "liquid"
   };
