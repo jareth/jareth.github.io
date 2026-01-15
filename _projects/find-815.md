@@ -1,4 +1,5 @@
 ---
+layout: project
 short_name: find815
 name: Lost - Find815
 client: ABC Studios

@@ -1,4 +1,5 @@
 ---
+layout: project
 short_name: slide
 name: SLiDE
 client: Hoodlum / Foxtel / Playmaker

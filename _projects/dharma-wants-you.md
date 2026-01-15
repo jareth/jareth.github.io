@@ -1,4 +1,5 @@
 ---
+layout: project
 short_name: dharma-wants-you
 name: Lost - Dharma Wants You
 client: ABC Studios

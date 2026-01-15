@@ -18,6 +18,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addWatchTarget("./assets/css/");
   eleventyConfig.addWatchTarget("./dist/");
 
+  // Ignore manifest.yml to prevent infinite loop when Webpack writes it
+  eleventyConfig.watchIgnores.add("_data/manifest.yml");
+
   // Collections
   eleventyConfig.addCollection("projects", function(collectionApi) {
     return collectionApi.getFilteredByGlob("_projects/*.md");
