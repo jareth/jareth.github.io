@@ -1,31 +1,174 @@
 jareth.github.io
 ================
 
+Personal portfolio website deployed via GitHub Pages.
+
 Jekyll + Tailwind setup is mostly based on [this blog post by Frank de Jonge][1] and the [example jekyll setup from Tailwindcss][2].
 
 [1]: https://blog.frankdejonge.nl/setting-up-docs-with-tailwind-css-and-github-pages/ "Setting up docs with Tailwind CSS & GitHub Pages"
 [2]: https://github.com/tailwindcss/setup-examples/tree/master/examples/jekyll "Jekyll with Tailwind"
 
-Local Development
------------------
+## Technology Stack
+
+- **Jekyll** - Static site generator (GitHub Pages compatible)
+- **Tailwind CSS** (v3.4.1) - Utility-first CSS framework
+- **Webpack** (v5.90.3) - Asset bundler
+- **PostCSS** - CSS processing with autoprefixer, cssnano, and PurgeCSS
+
+## Directory Structure
+
+```
+├── _config.yml              # Jekyll configuration
+├── _data/
+│   ├── manifest.yml         # Webpack manifest (auto-generated)
+│   └── navigation.yml       # Site navigation structure
+├── _includes/               # Reusable components (navigation, video, analytics)
+├── _layouts/                # Page templates (default, post, project)
+├── _posts/                  # Blog posts (YYYY-MM-DD-title.md)
+├── _projects/               # Project case studies
+├── assets/
+│   ├── css/site.css         # Main CSS entry point (Tailwind imports)
+│   └── images/              # Local image assets
+├── dist/                    # Webpack output (committed to repo)
+├── _site/                   # Jekyll build output (gitignored)
+├── index.html               # Homepage
+├── about.md                 # About page
+├── projects.html            # Projects listing
+└── blog.html                # Blog listing (not linked in nav)
+```
+
+## Local Development
 
 Requires Ruby and Yarn. Setup tools:
 
     bundle install
     yarn install
-    
- For local development you can run both webpack watch and jekyll serve:
- 
+
+For local development you can run both webpack watch and jekyll serve:
+
     yarn run watch & bundle exec jekyll serve && fg
-    
-For production we use purgecss to remove unneeded rules but this requires the final html to be present in jeykyll's 
-build folder (`_site`). So first build jekyll in production mode:
+
+Site will be available at `http://localhost:4000`
+
+## Production Build
+
+For production we use PurgeCSS to remove unused CSS rules, but this requires the final HTML to be present in Jekyll's build folder (`_site`). So first build Jekyll in production mode:
 
     JEKYLL_ENV=production bundle exec jekyll build
 
-Then build webpack in production mode:
+Then build Webpack in production mode:
 
     yarn run prod
-     
-If you are copying the result `_site` folder to a web server, you will need to run the jekyll build again, to copy the 
-result of the webpack build into the folder. For pushing to github pages, just commit the files in `dist`.
+
+### npm Scripts
+
+- `yarn run prod` - Production build with PurgeCSS and minification
+- `yarn run dev` - Development build
+- `yarn run watch` - Development build with file watching
+
+## Content Management
+
+### Adding a Project
+
+Create a markdown file in `_projects/` with front matter:
+
+```yaml
+---
+short_name: myproject
+name: My Project Name
+client: Client Name
+preview: https://assets.vanbone.com/images/myproject_proj.jpg
+---
+
+Project description and content goes here...
+```
+
+### Adding a Blog Post
+
+Create a file in `_posts/` named `YYYY-MM-DD-title.md`:
+
+```yaml
+---
+title: My Post Title
+layout: post
+---
+
+Post content goes here...
+```
+
+Note: The blog section exists but is currently not linked in the navigation.
+
+### Editing Navigation
+
+Update `_data/navigation.yml`:
+
+```yaml
+- name: Home
+  link: /
+- name: About
+  link: /about.html
+- name: Projects
+  link: /projects.html
+```
+
+## Styling
+
+### Tailwind Configuration
+
+- Custom font: Quicksand (configured in `tailwind.config.js`)
+- Primary brand color: `bg-teal-300`
+- Content scanning: `./_site/**/*.{html,js}`
+
+### Custom CSS
+
+Add custom styles to `assets/css/site.css` after the Tailwind directives:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles here */
+```
+
+## Asset Pipeline
+
+Webpack compiles CSS and generates hashed filenames for cache busting. The manifest at `_data/manifest.yml` is auto-generated and used by Jekyll layouts:
+
+```liquid
+<link rel="stylesheet" href="{{ site.data.manifest['main.css'] }}">
+```
+
+### External Assets
+
+Images and videos are hosted externally at `https://assets.vanbone.com/` to keep the repository lightweight.
+
+Use the `video.html` include for responsive video embeds:
+
+```liquid
+{% include video.html
+    width=800 height=400
+    poster="https://assets.vanbone.com/images/example.jpg"
+    mp4="https://assets.vanbone.com/videos/example.mp4"
+    webm="https://assets.vanbone.com/videos/example.webm"
+%}
+```
+
+## Deployment
+
+1. Make changes to source files
+2. Run production build (Jekyll first, then Webpack)
+3. Commit changes including the `dist/` folder
+4. Push to repository
+5. GitHub Pages automatically rebuilds and deploys
+
+**Important:** The `dist/` folder must be committed. The `_site/` folder is gitignored and regenerated by GitHub Pages.
+
+## Updating Dependencies
+
+```bash
+bundle update        # Update Ruby gems
+yarn upgrade         # Update Node packages
+```
+
+Test after updates, especially the `github-pages` gem which may have specific version requirements.
