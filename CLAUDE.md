@@ -40,8 +40,14 @@ Migration from Jekyll to Eleventy is in progress. See `eleventy-migration.xml` f
   - Build runs: Eleventy → Webpack (PurgeCSS) → Eleventy (for updated manifest)
   - Config files (`tailwind.config.js`, `postcss.config.js`) unchanged - already scan `_site/`
 
+- [x] **Phase 5: SEO and Feed Configuration**
+  - Created `feed.njk` - Atom RSS feed using eleventy-plugin-rss filters
+  - Created `sitemap.njk` - XML sitemap listing all pages
+  - Added SEO meta tags to `_layouts/default.html` (description, og:*, canonical)
+  - Added custom `date` filter to `.eleventy.js` for Nunjucks date formatting
+  - Added `njk` to templateFormats in `.eleventy.js`
+
 ### Remaining Phases
-- [ ] Phase 5: SEO and Feed Configuration
 - [ ] Phase 6: GitHub Actions Deployment
 - [ ] Phase 7: Cleanup
 
