@@ -26,13 +26,21 @@ Migration from Jekyll to Eleventy is in progress. See `eleventy-migration.xml` f
   - Updated `_includes/video.html` - rewrote for Eleventy's LiquidJS
   - Updated `projects.html` and `blog.html` - collection syntax
   - Updated include syntax in 4 project files with video embeds
-  - Created `_data/site.yml` (from Phase 3) - site metadata
   - Created `_projects/_projects.json` - permalink config for `/projects/[slug]/`
   - Created `_posts/_posts.json` - permalink config for `/blog/[slug]/`
 
+- [x] **Phase 3: Update Front Matter and Data**
+  - Created `_data/site.yml` - site metadata (title, description, url)
+  - Permalink configuration via directory data files (cleaner than per-file permalinks)
+  - `_data/navigation.yml` compatible with Eleventy as-is
+
+- [x] **Phase 4: Update Build Pipeline**
+  - Installed `npm-run-all` for parallel script execution
+  - Added new scripts: `build`, `build:html`, `build:css`, `dev`, `dev:html`, `dev:css`, `start`
+  - Build runs: Eleventy → Webpack (PurgeCSS) → Eleventy (for updated manifest)
+  - Config files (`tailwind.config.js`, `postcss.config.js`) unchanged - already scan `_site/`
+
 ### Remaining Phases
-- [ ] Phase 3: Update Front Matter and Data (partially done - site.yml created)
-- [ ] Phase 4: Update Build Pipeline
 - [ ] Phase 5: SEO and Feed Configuration
 - [ ] Phase 6: GitHub Actions Deployment
 - [ ] Phase 7: Cleanup
@@ -46,7 +54,7 @@ Always use `yarn run` commands instead of `npx` commands.
 yarn install
 ```
 
-### Local Development
+### Local Development (Eleventy)
 ```bash
 yarn run dev
 ```
