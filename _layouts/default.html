@@ -13,18 +13,30 @@
         <meta property="og:type" content="website">
         <link rel="canonical" href="{{ site.url }}{{ page.url }}">
         <link rel="stylesheet" href="{{ manifest['main.css'] }}">
-        <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="{{ site.title }}">
+        <script>
+            // Check for saved theme preference or system preference
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
     </head>
-    <body class="font-sans flex flex-col min-h-screen">
-        <header class="flex bg-teal-300 p-4 shadow-lg">
-            <a href="/" >
-                <img src="/assets/images/jvb_logo.svg" alt="JvB logo" class="inline h-24 -mb-8" />
-            </a>
-            {% include navigation.html %}
+    <body class="bg-amber-50 dark:bg-stone-950 text-stone-700 dark:text-amber-500 font-sans min-h-screen flex flex-col transition-colors duration-300">
+        <header class="bg-stone-50 dark:bg-stone-900 border-b border-stone-300 dark:border-amber-900/50 px-6 py-4 transition-colors duration-300">
+            <div class="max-w-5xl mx-auto flex items-center justify-between">
+                <a href="/" class="hover:opacity-80 transition-opacity">
+                    <img src="/assets/images/jvb_logo.svg" alt="JvB logo" class="h-12" />
+                </a>
+                {% include navigation.html %}
+            </div>
         </header>
-        <section id="content" class="p-12 flex-grow">
+        <main id="content" class="flex-grow max-w-5xl mx-auto w-full px-6 py-12">
             {{ content }}
-        </section>
-        <footer class="text-center bg-teal-300 p-4 shadow-lg">© 2020 Jareth van Bone. All project assets remain property of the original IP owner.</footer>
+        </main>
+        <footer class="bg-stone-100/50 dark:bg-stone-900 border-t border-stone-300 dark:border-amber-900/50 px-6 py-6 text-center text-stone-500 dark:text-amber-700 text-sm font-mono transition-colors duration-300">
+            <span class="text-amber-600 dark:text-amber-500">&gt;</span> © 2025 Jareth van Bone. All project assets remain property of the original IP owner.
+        </footer>
     </body>
