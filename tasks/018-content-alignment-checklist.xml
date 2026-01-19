@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task>
+  <id>018</id>
+  <title>Content Alignment Checklist</title>
+  <priority>medium</priority>
+  <category>content-alignment</category>
+  <status>pending</status>
+  <description>Ensure LinkedIn themes are reflected on the website</description>
+  <checklist>
+    <item status="pending">Empathy-driven leadership philosophy</item>
+    <item status="pending">Team leadership experience (not just individual contributor)</item>
+    <item status="pending">Modern cloud technologies (AWS, Kubernetes, OpenShift)</item>
+    <item status="pending">Large-scale enterprise/government projects</item>
+    <item status="pending">Production support and system reliability</item>
+    <item status="pending">Full-stack capabilities (not just frontend or backend)</item>
+    <item status="pending">Cross-functional team collaboration</item>
+    <item status="pending">Continuous improvement and best practices focus</item>
+    <item status="pending">Current status as Senior Team Lead (not freelancer)</item>
+  </checklist>
+  <notes>
+    <note>The current site reads like it's from your 2018-2020 freelance period</note>
+    <note>Need to bridge 5+ year gap in content freshness</note>
+    <note>LinkedIn shows enterprise team leader; website shows freelance consultant</note>
+    <note>Both can be true, but positioning needs to be clearer</note>
+    <note>Consider whether freelance work is still something you want to promote</note>
+    <note>If not actively freelancing, pivot messaging entirely to team leadership and enterprise development</note>
+  </notes>
+  <effort>ongoing</effort>
+</task>

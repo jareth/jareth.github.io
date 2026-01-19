@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task>
+  <id>002</id>
+  <title>Add Current Status Section</title>
+  <priority>critical</priority>
+  <category>quick-wins</category>
+  <status>pending</status>
+  <description>Add near top of homepage showing current role and work</description>
+  <details>
+    <item>Currently: Senior Software Developer Team Lead at Foster Moore</item>
+    <item>Working on: Large-scale government registry transformation projects</item>
+  </details>
+  <location>Homepage</location>
+  <effort>small</effort>
+</task>

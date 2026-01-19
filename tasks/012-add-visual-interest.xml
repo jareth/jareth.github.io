@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task>
+  <id>012</id>
+  <title>Add Visual Interest to Homepage</title>
+  <priority>low</priority>
+  <category>enhanced-features</category>
+  <status>pending</status>
+  <description>Improve visual design and hierarchy</description>
+  <suggestions>
+    <item>Icons for each service offering</item>
+    <item>Brief timeline or career highlights visualization</item>
+    <item>Technology logos/badges for skills section</item>
+    <item>Project screenshots or thumbnails (if NDA allows)</item>
+    <item>Improve overall visual hierarchy</item>
+  </suggestions>
+  <location>Homepage</location>
+  <effort>large</effort>
+</task>

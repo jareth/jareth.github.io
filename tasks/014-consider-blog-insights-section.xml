@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task>
+  <id>014</id>
+  <title>Consider Adding Blog/Insights Section</title>
+  <priority>low</priority>
+  <category>enhanced-features</category>
+  <status>pending</status>
+  <description>Add thought leadership content to demonstrate expertise</description>
+  <article-ideas>
+    <idea>Leading Teams with Empathy in Software Development</idea>
+    <idea>Production Incident Management: Best Practices</idea>
+    <idea>Lessons from Modernizing Legacy Systems</idea>
+    <idea>Building Cross-Functional Agile Teams</idea>
+  </article-ideas>
+  <benefits>
+    <benefit>Demonstrates thought leadership</benefit>
+    <benefit>Improves SEO</benefit>
+  </benefits>
+  <note>Even 2-3 articles would add value</note>
+  <effort>large</effort>
+</task>

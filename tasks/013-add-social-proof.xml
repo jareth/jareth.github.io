@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task>
+  <id>013</id>
+  <title>Add Social Proof</title>
+  <priority>low</priority>
+  <category>enhanced-features</category>
+  <status>pending</status>
+  <description>Feature testimonials or recommendations on homepage</description>
+  <suggestions>
+    <item>Feature 1-2 testimonials or recommendations on homepage</item>
+    <item>Could pull from LinkedIn recommendations</item>
+    <item>Quote from colleagues, managers, or clients</item>
+  </suggestions>
+  <location>Homepage</location>
+  <effort>medium</effort>
+</task>

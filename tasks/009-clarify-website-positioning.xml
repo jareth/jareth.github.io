@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task>
+  <id>009</id>
+  <title>Clarify Website Positioning</title>
+  <priority>medium</priority>
+  <category>strategic-positioning</category>
+  <status>pending</status>
+  <description>Decide primary purpose and adjust messaging throughout site</description>
+  <options>
+    <option>
+      <purpose>Active job seeking</purpose>
+      <focus>Leadership and enterprise development</focus>
+    </option>
+    <option>
+      <purpose>Freelance availability</purpose>
+      <focus>Update to current skill set, remove "side hustle" language</focus>
+    </option>
+    <option>
+      <purpose>Professional portfolio</purpose>
+      <focus>Balance both with clear sections</focus>
+    </option>
+  </options>
+  <action>Adjust messaging throughout site to match chosen positioning</action>
+  <effort>medium</effort>
+</task>
