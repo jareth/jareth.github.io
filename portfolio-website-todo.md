@@ -61,25 +61,20 @@
 
 ## Medium Priority - Strategic Positioning
 
-- [ ] **Clarify website positioning**
-  - Decide primary purpose:
-    - Active job seeking → Focus on leadership and enterprise development
-    - Freelance availability → Update to current skill set, remove "side hustle" language
-    - Professional portfolio → Balance both with clear sections
-  - Adjust messaging throughout site to match chosen positioning
+- [x] **Clarify website positioning**
+  - Decided primary purpose: Active job seeking
+  - Updated site description to "Senior Software Developer Team Lead | Enterprise Systems | Cloud Infrastructure"
+  - Messaging throughout site now focuses on leadership and enterprise development
 
-- [ ] **Remove or reframe "side hustle" language**
-  - "Website Developer" section currently reads as freelance/hobby work
-  - Either remove this section or reframe as "Consulting Services" if relevant
-  - If keeping freelance positioning, update to reflect current capabilities
+- [x] **Remove or reframe "side hustle" language**
+  - Verified no freelance/side hustle language remains in site content
+  - Site description updated from "Creative Consultant" to enterprise-focused terms
 
-- [ ] **Add clear call-to-action**
-  - Decide what you want visitors to do:
-    - Contact for opportunities?
-    - View projects?
-    - Connect on LinkedIn?
-  - Make it prominent on homepage
-  - Add contact section or form if missing
+- [x] **Add clear call-to-action**
+  - Added "Let's Connect" section at bottom of homepage
+  - Primary CTA: Connect on LinkedIn button
+  - Secondary CTA: Email contact (jareth@vanbone.com)
+  - Welcoming message about new opportunities
 
 ## Lower Priority - Enhanced Features
 
