@@ -69,39 +69,45 @@ font-mono: 'IBM Plex Mono', monospace          /* Accents, footer, code */
 
 ## Components
 
+Reusable component classes defined in `assets/css/site.css` using `@layer components`:
+
 ### Cards
 
 ```html
-<div class="bg-white/60 border border-stone-300 rounded-xl p-6 hover:border-amber-500 hover:shadow-amber transition-all duration-300">
-    <h2 class="text-xl font-semibold text-stone-800 mb-3 flex items-center gap-2">
-        <span class="w-2 h-2 bg-amber-500 rounded-full shadow-amber-dot"></span>
-        Card Title
-    </h2>
-    <p class="text-stone-600">Card content...</p>
+<div class="card">
+    <h2 class="card-title"><span class="card-dot"></span>Card Title</h2>
+    <p class="text-stone-600 dark:text-amber-600">Card content...</p>
 </div>
 ```
 
-**States:**
-- Default: `border-stone-300`
-- Hover: `border-amber-500 shadow-amber`
+**Component classes:**
+
+| Class | Styles |
+|-------|--------|
+| `.card` | `bg-white/60 dark:bg-stone-900 border border-stone-300 dark:border-amber-900/30 rounded-xl p-6 hover:border-amber-500 dark:hover:border-amber-500 hover:shadow-amber dark:hover:shadow-amber-glow transition-all duration-300` |
+| `.card-title` | `text-xl font-semibold text-stone-800 dark:text-amber-500 mb-3 flex items-center gap-2` |
+| `.card-dot` | `w-2 h-2 bg-amber-500 rounded-full shadow-amber-dot` |
 
 ### Navigation Links
 
 ```html
-<a href="#" class="text-stone-600 hover:text-amber-600 transition-colors font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-amber-500 after:transition-all hover:after:w-full">
-    Link Text
-</a>
+<a href="#" class="nav-link">Link Text</a>
 ```
+
+**Component class:**
+
+| Class | Styles |
+|-------|--------|
+| `.nav-link` | `text-stone-600 dark:text-amber-600 hover:text-amber-600 dark:hover:text-amber-400 transition-colors font-medium` + animated underline |
 
 **Effects:**
 - Text color transitions to amber on hover
-- Underline animates from left to right
+- Underline animates from left to right via `::after` pseudo-element
 
 ### Accent Text
 
 ```html
-<span class="text-amber-600">Highlighted text</span>
-<span class="text-amber-600 italic">Emphasized text</span>
+<span class="text-amber-600 dark:text-amber-400">Highlighted text</span>
 ```
 
 ---
