@@ -3,27 +3,27 @@
 
 ## Critical / Quick Wins
 
-- [ ] **Update copyright year**
+- [x] **Update copyright year**
   - Change "© 2020" to "© 2025" in footer
   - This is the easiest fix with immediate credibility impact
 
-- [ ] **Add current status section**
+- [x] **Add current status section**
   - Add near top of homepage: "Currently: Senior Software Developer Team Lead at Foster Moore"
   - Include: "Working on: Large-scale government registry transformation projects"
 
-- [ ] **Strengthen opening tagline**
+- [x] **Strengthen opening tagline**
   - Current: "I'm a software developer with empathy"
   - Option 1: "I'm an engineering team lead who builds better software through empathy"
   - Option 2: "I lead development teams with empathy, delivering reliable systems at scale"
   - Or craft your own version that's more powerful and aligned with current role
 
-- [ ] **Rewrite the four service offerings** to match current expertise:
+- [x] **Rewrite the four service offerings** to match current expertise:
   - **Engineering Team Leadership** - Leading cross-functional teams on complex systems, mentoring developers, establishing best practices
   - **Cloud Infrastructure & DevOps** - AWS, Kubernetes, OpenShift, CI/CD pipelines, production support
   - **Full-Stack Development** - Spring/Java backend, modern JavaScript, mobile applications, enterprise systems
   - **Software Architecture** - System design, technical strategy, integration architecture for large-scale projects
 
-- [ ] **Add skills/technologies section** to homepage
+- [x] **Add skills/technologies section** to homepage
   - Backend: Spring, Java, PHP
   - Frontend: JavaScript, Vue.js
   - Mobile: Adobe AIR, cross-platform development
