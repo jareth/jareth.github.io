@@ -59,6 +59,14 @@ ul {
         @apply text-stone-600 dark:text-amber-700;
     }
 
+    .tech-tag {
+        @apply text-xs font-mono px-2 py-1 bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-amber-500 rounded;
+    }
+
+    .section-title {
+        @apply text-2xl font-bold text-stone-800 dark:text-amber-500 mb-6 text-center font-mono;
+    }
+
     .highlight {
         @apply text-amber-600 dark:text-amber-400;
     }

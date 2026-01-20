@@ -4,6 +4,9 @@ short_name: find815
 name: Lost - Find815
 client: ABC Studios
 preview: https://assets.vanbone.com/images/find815_proj.jpg
+category: entertainment
+awards: Emmy Finalist, Global Media Award Winner
+role: Lead Developer
 ---
 
 A pre-season promotion site for the television series featuring a prelude storyline, rich video content, puzzles, and 

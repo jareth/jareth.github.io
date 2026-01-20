@@ -4,6 +4,9 @@ short_name: dance-academy-2
 name: Dance Academy Online - 2nd Year
 client: Werner Film Productions / ZDF Enterprises / ABC3
 preview: https://assets.vanbone.com/images/DA2_proj.jpg
+category: entertainment
+awards: KidScreen Award Winner
+role: Lead Developer
 ---
 
 A companion site for the television series featuring exploration of the locations from the show and exclusive content 

@@ -34,14 +34,14 @@
 
 ## High Priority - Content Updates
 
-- [ ] **Add "Experience Highlights" section** with 3-4 key achievements
+- [x] **Add "Experience Highlights" section** with 3-4 key achievements
   - Years of team leadership experience (5+ years leading teams)
   - Scale of systems worked on (government transformation, MMO games)
   - Notable technical challenges solved
   - Technologies mastered
   - Quantifiable impacts where possible
 
-- [ ] **Update About page** 
+- [x] **Update About page**
   - Match LinkedIn summary with empathy framework
   - Connect empathy to concrete outcomes:
     - Empathy with users → better UX
@@ -51,7 +51,7 @@
   - Include career progression overview
   - Add professional photo if not already present
 
-- [ ] **Update Projects page**
+- [x] **Update Projects page**
   - Add Foster Moore work (within NDA constraints - focus on tech and scale, not specifics)
   - Feature InnoGames MMO projects prominently
   - Focus on technical achievements rather than just client work

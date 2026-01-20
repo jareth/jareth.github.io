@@ -4,6 +4,9 @@ short_name: slide
 name: SLiDE
 client: Hoodlum / Foxtel / Playmaker
 preview: https://assets.vanbone.com/images/slide_proj.jpg
+category: entertainment
+awards: Interactive Media Award, Webby Nominee
+role: Lead Developer
 ---
 
 A companion site for the television series featuring exclusive videos, animated graphic novels, and mini-games.

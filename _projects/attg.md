@@ -4,6 +4,8 @@ short_name: attg
 name: Australia - The Time Traveller's Guide
 client: Essential Media / ABC1
 preview: https://assets.vanbone.com/images/attg_proj.jpg
+category: entertainment
+role: Lead Developer
 ---
 
 A companion site for the television series featuring a fully interactive timeline of the past 4567 million years in the

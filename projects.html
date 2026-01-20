@@ -2,18 +2,38 @@
 title: Projects
 layout: default
 ---
-<h1>Projects</h1>
+<section class="text-center py-8">
+    <h1 class="text-4xl md:text-5xl font-bold text-stone-800 dark:text-amber-500 mb-4">Projects</h1>
+    <p class="text-lg card-text font-mono max-w-3xl mx-auto">A selection of work spanning enterprise systems, game development, and interactive experiences.</p>
+</section>
 
-<ul class="list-none flex flex-wrap justify-center">
-    {% for project in collections.projects %}
-    <li class="m-4 max-w-sm shadow-lg rounded overflow-hidden">
-        <a href="{{ project.url }}">
-            <img src="{{ project.data.preview }}" class="w-full"/>
-            <div class="px-6 py-4">
-                <h2 class="font-bold text-base m-1">{{ project.data.name }}</h2>
-                <p class="m-1">{{ project.templateContent | strip_html | truncate: 150 }}</p>
+<section class="mt-8">
+    <h2 class="section-title"><span class="highlight">&gt;</span> Enterprise & Technical Leadership</h2>
+    <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {% for project in collections.projects %}{% if project.data.category == "enterprise" %}
+        <a href="{{ project.url }}" class="card block hover:scale-[1.02] transition-transform">
+            <h3 class="card-title"><span class="card-dot"></span>{{ project.data.name }}</h3>
+            <p class="card-text-muted font-mono text-xs mb-2">{{ project.data.client }}</p>
+            <p class="card-text mb-2">{{ project.data.tagline }}</p>
+            <div class="flex flex-wrap gap-2 mt-3">
+                {% for tech in project.data.technologies %}<span class="tech-tag">{{ tech }}</span>{% endfor %}
             </div>
         </a>
-    </li>
-    {% endfor %}
-</ul>
+        {% endif %}{% endfor %}
+    </div>
+</section>
+
+<section class="mt-12">
+    <h2 class="section-title"><span class="highlight">&gt;</span> Interactive Entertainment</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {% for project in collections.projects %}{% if project.data.category == "entertainment" %}
+        <a href="{{ project.url }}" class="card block hover:scale-[1.02] transition-transform">
+            {% if project.data.preview %}<img src="{{ project.data.preview }}" alt="{{ project.data.name }}" class="w-full rounded mb-4"/>{% endif %}
+            <h3 class="card-title"><span class="card-dot"></span>{{ project.data.name }}</h3>
+            <p class="card-text-muted font-mono text-xs mb-2">{{ project.data.client }}</p>
+            <p class="card-text-muted">{{ project.templateContent | strip_html | truncate: 120 }}</p>
+            {% if project.data.awards %}<p class="text-xs font-mono highlight mt-2">{{ project.data.awards }}</p>{% endif %}
+        </a>
+        {% endif %}{% endfor %}
+    </div>
+</section>
