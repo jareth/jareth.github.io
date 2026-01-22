@@ -12,7 +12,7 @@ layout: default
     <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         {% for project in collections.projects %}{% if project.data.category == "enterprise" %}
         <a href="{{ project.url }}" class="card block hover:scale-[1.02] transition-transform">
-            <h3 class="card-title"><span class="card-dot"></span>{{ project.data.name }}</h3>
+            <h3 class="card-title">{{ project.data.name }}</h3>
             <p class="card-text-muted font-mono text-xs mb-2">{{ project.data.client }}</p>
             <p class="card-text mb-2">{{ project.data.tagline }}</p>
             <div class="flex flex-wrap gap-2 mt-3">
@@ -29,7 +29,7 @@ layout: default
         {% for project in collections.projects %}{% if project.data.category == "entertainment" %}
         <a href="{{ project.url }}" class="card block hover:scale-[1.02] transition-transform">
             {% if project.data.preview %}<img src="{{ project.data.preview }}" alt="{{ project.data.name }}" class="w-full rounded mb-4"/>{% endif %}
-            <h3 class="card-title"><span class="card-dot"></span>{{ project.data.name }}</h3>
+            <h3 class="card-title">{{ project.data.name }}</h3>
             <p class="card-text-muted font-mono text-xs mb-2">{{ project.data.client }}</p>
             <p class="card-text-muted">{{ project.templateContent | strip_html | truncate: 120 }}</p>
             {% if project.data.awards %}<p class="text-xs font-mono highlight mt-2">{{ project.data.awards }}</p>{% endif %}
