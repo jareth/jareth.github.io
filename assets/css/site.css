@@ -22,7 +22,60 @@ ul {
 
 @tailwind components;
 
-/* Write your styles below this line. */
+@layer components {
+    .card {
+        @apply bg-white/60 dark:bg-stone-900 border border-stone-300 dark:border-amber-900/30 rounded-xl p-6 hover:border-amber-500 dark:hover:border-amber-500 hover:shadow-amber dark:hover:shadow-amber-glow transition-all duration-300;
+    }
+
+    .card-title {
+        @apply text-xl font-semibold text-stone-800 dark:text-amber-500 mb-3 flex items-center gap-2;
+    }
+
+    .card-dot {
+        @apply w-2 h-2 bg-amber-500 rounded-full shadow-amber-dot;
+    }
+
+    .nav-link {
+        @apply text-stone-600 dark:text-amber-600 hover:text-amber-600 dark:hover:text-amber-400 transition-colors font-medium relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-amber-500 after:transition-all hover:after:w-full;
+    }
+
+    .info-box {
+        @apply bg-stone-100 dark:bg-stone-800 border border-stone-300 dark:border-amber-900/50 rounded-lg p-4;
+    }
+
+    .info-box-title {
+        @apply font-mono text-amber-600 dark:text-amber-400 text-sm mb-2;
+    }
+
+    .info-box-text {
+        @apply text-stone-600 dark:text-amber-600 text-sm;
+    }
+
+    .card-text {
+        @apply text-stone-600 dark:text-amber-600;
+    }
+
+    .card-text-muted {
+        @apply text-stone-600 dark:text-amber-700;
+    }
+
+    .tech-tag {
+        @apply text-xs font-mono px-2 py-1 bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-amber-500 rounded;
+    }
+
+    .section-title {
+        @apply text-2xl font-bold text-stone-800 dark:text-amber-500 mb-6 text-center font-mono;
+    }
+
+    .highlight {
+        @apply text-amber-600 dark:text-amber-400;
+    }
+
+    .highlight-glow {
+        @apply text-amber-600 dark:text-amber-400 dark:drop-shadow-[0_0_10px_rgba(245,158,11,0.8)];
+    }
+
+}
 
 #content {
     p, h1, h2, h3 {
@@ -33,6 +86,30 @@ ul {
     }
 }
 
+
+/* CRT scanline + vignette effect for dark mode */
+.dark body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background:
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px 1px, transparent 1px 2px),
+        radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.3) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dark body::before {
+        background: none;
+    }
+}
+
 /* Write your styles above this line. */
 
 @tailwind utilities;
+
+.prose h3::before {
+    content: '> ';
+    color: #F59E0B;
+}

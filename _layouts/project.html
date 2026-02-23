@@ -1,6 +1,39 @@
 ---
 layout: default
 ---
-<h1>{{ name }}</h1>
-<h2>{{ client }}</h2>
-{{ content }}
+<section class="text-center py-8">
+    <h1 class="text-4xl md:text-5xl font-bold text-stone-800 dark:text-amber-500 mb-4">{{ name }}</h1>
+    <p class="text-lg card-text font-mono">{{ client }}</p>
+    {% if tagline %}<p class="card-text-muted mt-2 max-w-2xl mx-auto">{{ tagline }}</p>{% endif %}
+</section>
+
+{% if technologies %}
+<section class="max-w-4xl mx-auto mb-8">
+    <div class="flex flex-wrap justify-center gap-2">
+        {% for tech in technologies %}<span class="tech-tag text-sm px-3">{{ tech }}</span>{% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<section class="max-w-4xl mx-auto">
+    <div class="card">
+        <div class="prose prose-stone dark:prose-invert max-w-none prose-headings:text-stone-800 dark:prose-headings:text-amber-500 prose-headings:font-mono prose-headings:font-bold prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-p:text-stone-600 dark:prose-p:text-stone-300 prose-a:text-amber-600 dark:prose-a:text-amber-400 prose-img:rounded prose-img:shadow-lg prose-img:my-6">
+            {{ content }}
+        </div>
+    </div>
+</section>
+
+{% if role or team_size or duration %}
+<section class="mt-8 max-w-4xl mx-auto">
+    <h2 class="section-title"><span class="highlight">&gt;</span> Project Details</h2>
+    <div class="grid md:grid-cols-3 gap-4">
+        {% if role %}<div class="info-box text-center"><h3 class="info-box-title">My Role</h3><p class="info-box-text">{{ role }}</p></div>{% endif %}
+        {% if team_size %}<div class="info-box text-center"><h3 class="info-box-title">Team Size</h3><p class="info-box-text">{{ team_size }}</p></div>{% endif %}
+        {% if duration %}<div class="info-box text-center"><h3 class="info-box-title">Duration</h3><p class="info-box-text">{{ duration }}</p></div>{% endif %}
+    </div>
+</section>
+{% endif %}
+
+<section class="mt-8 text-center">
+    <a href="/projects/" class="inline-block font-mono highlight hover:underline" aria-label="Back to Projects">&larr; Back to Projects</a>
+</section>

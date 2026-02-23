@@ -4,6 +4,9 @@ short_name: dance-academy
 name: Dance Academy Online
 client: Werner Film Productions / ZDF Enterprises / ABC3
 preview: https://assets.vanbone.com/images/DA_proj.jpg
+category: entertainment
+awards: KidScreen Award Winner
+role: Flash Team Lead
 ---
 
 A companion site for the television series featuring exploration of the locations from the show and exclusive content 

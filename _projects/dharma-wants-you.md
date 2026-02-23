@@ -4,6 +4,9 @@ short_name: dharma-wants-you
 name: Lost - Dharma Wants You
 client: ABC Studios
 preview: https://assets.vanbone.com/images/DWY_proj.jpg
+category: entertainment
+awards: Emmy Winner, ATOM Award Winner
+role: Lead Developer
 ---
 
 A pre-season promotion site for the television series featuring puzzles, competition leaderboards, and exclusive plot
