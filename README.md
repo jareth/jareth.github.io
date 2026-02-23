@@ -17,7 +17,7 @@ Personal portfolio website deployed via GitHub Pages.
 ├── .eleventy.js             # Eleventy configuration
 ├── .eleventyignore          # Files excluded from Eleventy processing
 ├── _data/
-│   ├── manifest.yml         # Webpack manifest (auto-generated)
+│   ├── manifest.json         # Webpack manifest (auto-generated)
 │   ├── navigation.yml       # Site navigation structure
 │   └── site.yml             # Site metadata (title, description, url)
 ├── _includes/               # Reusable components (navigation, video, analytics)
@@ -135,7 +135,7 @@ Add custom styles to `assets/css/site.css` after the Tailwind directives:
 
 ## Asset Pipeline
 
-Webpack compiles CSS and generates hashed filenames for cache busting. The manifest at `_data/manifest.yml` is auto-generated and used by Eleventy layouts:
+Webpack compiles CSS and generates hashed filenames for cache busting. The manifest at `_data/manifest.json` is auto-generated and used by Eleventy layouts:
 
 ```liquid
 <link rel="stylesheet" href="{{ manifest['main.css'] }}">
