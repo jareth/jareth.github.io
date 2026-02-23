@@ -30,12 +30,18 @@ module.exports = function(eleventyConfig) {
     return collectionApi.getFilteredByGlob("_posts/*.md");
   });
 
-  // Custom date filter for Nunjucks (YYYY-MM-DD format)
+  // Custom date filter (supports Jekyll-style formats)
   eleventyConfig.addFilter("date", function(dateObj, format) {
     if (!dateObj) return "";
     const d = new Date(dateObj);
     if (format === "%Y-%m-%d") {
       return d.toISOString().split("T")[0];
+    } else if (format === "%b %d, %Y") {
+      return d.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "2-digit"
+      });
     }
     return d.toISOString();
   });

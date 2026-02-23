@@ -36,6 +36,9 @@ jobs:
       - name: Build CSS (production)
         run: yarn run build:css
 
+      - name: Rebuild Eleventy with updated assets
+        run: yarn run build:html
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
