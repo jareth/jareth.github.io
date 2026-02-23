@@ -99,6 +99,12 @@ ul {
         radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.3) 100%);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .dark body::before {
+        background: none;
+    }
+}
+
 /* Write your styles above this line. */
 
 @tailwind utilities;
