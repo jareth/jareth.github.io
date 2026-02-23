@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task>
+  <meta>
+    <id>07</id>
+    <name>Cleanup</name>
+    <phase>7</phase>
+    <status>pending</status>
+    <dependencies>06</dependencies>
+  </meta>
+
+  <description>
+    Remove Ruby files and update documentation after successful migration.
+  </description>
+
+  <steps>
+    <step number="7.1">
+      <action>Remove Ruby files</action>
+      <files-to-delete>
+        <file>Gemfile</file>
+        <file>Gemfile.lock</file>
+        <file>_config.yml</file>
+      </files-to-delete>
+    </step>
+
+    <step number="7.2">
+      <action>Update .gitignore</action>
+      <remove>
+        <line>_site/</line>
+      </remove>
+      <notes>
+        <note>_site/ no longer needs to be ignored if using GitHub Actions</note>
+        <note>Or keep it ignored if you prefer not to commit build output</note>
+      </notes>
+    </step>
+
+    <step number="7.3">
+      <action>Remove dist/ from git tracking (optional)</action>
+      <command>git rm -r --cached dist/</command>
+      <notes>
+        <note>With GitHub Actions, dist/ is built during deployment</note>
+        <note>No longer need to commit hashed assets</note>
+      </notes>
+    </step>
+
+    <step number="7.4">
+      <action>Update CLAUDE.md with new build instructions</action>
+      <new-commands>
+        <setup>yarn install</setup>
+        <development>yarn run dev</development>
+        <production>yarn run build</production>
+      </new-commands>
+    </step>
+  </steps>
+
+  <verification>
+    <check>No Ruby files remain in repository</check>
+    <check>.gitignore is updated</check>
+    <check>CLAUDE.md reflects Eleventy workflow</check>
+  </verification>
+</task>

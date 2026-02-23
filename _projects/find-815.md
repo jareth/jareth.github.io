@@ -1,4 +1,5 @@
 ---
+layout: project
 short_name: find815
 name: Lost - Find815
 client: ABC Studios
@@ -36,11 +37,12 @@ Based on the success of Find815, we also secured the next season's interactive e
 ![Laptop with email and website clues](https://assets.vanbone.com/images/find815_2.jpg "Laptop with email and website clues")
 ![Story driven puzzzles](https://assets.vanbone.com/images/find815_1.jpg "Story driven puzzzles")
 
-{% include video.html
-    width=800 height=400
-    poster="https://assets.vanbone.com/images/find815_4.jpg"
-    mp4="https://assets.vanbone.com/videos/Find815_Promo.mp4"
-    webm="https://assets.vanbone.com/videos/Find815_Promo.webm"
-    ogg="https://assets.vanbone.com/videos/Find815_Promo.ogv"
-    f4v="https://assets.vanbone.com/videos/Find815_Promo.flv"
+{% include video.html,
+    width: 800,
+    height: 400,
+    poster: "https://assets.vanbone.com/images/find815_4.jpg",
+    mp4: "https://assets.vanbone.com/videos/Find815_Promo.mp4",
+    webm: "https://assets.vanbone.com/videos/Find815_Promo.webm",
+    ogg: "https://assets.vanbone.com/videos/Find815_Promo.ogv",
+    f4v: "https://assets.vanbone.com/videos/Find815_Promo.flv"
 %}

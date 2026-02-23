@@ -32,7 +32,7 @@ module.exports = {
             filename: isProduction ? '[name].[fullhash].css' : '[name].css'
         }),
         new WebpackManifestPlugin ({
-            fileName: '../_data/manifest.yml',
+            fileName: '../_data/manifest.json',
             publicPath: '/dist/',
         }),
     ],

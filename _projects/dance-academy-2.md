@@ -1,4 +1,5 @@
 ---
+layout: project
 short_name: dance-academy-2
 name: Dance Academy Online - 2nd Year
 client: Werner Film Productions / ZDF Enterprises / ABC3

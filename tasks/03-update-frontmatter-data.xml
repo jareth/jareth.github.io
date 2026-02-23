@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task>
+  <meta>
+    <id>03</id>
+    <name>Update Front Matter and Data</name>
+    <phase>3</phase>
+    <status>pending</status>
+    <dependencies>01</dependencies>
+  </meta>
+
+  <description>
+    Add required permalinks to content files and create global site data.
+  </description>
+
+  <steps>
+    <step number="3.1">
+      <action>Add permalink to each project file</action>
+      <file>_projects/*.md</file>
+      <example><![CDATA[
+---
+short_name: dance-academy
+name: Dance Academy Online
+client: ABC TV
+preview: https://assets.vanbone.com/images/dao/preview.jpg
+permalink: /projects/{{ short_name }}/
+---
+]]></example>
+      <notes>
+        <note>Jekyll auto-generated URLs for collections; Eleventy needs explicit permalinks</note>
+      </notes>
+    </step>
+
+    <step number="3.2">
+      <action>Create _data/site.yml for global site data</action>
+      <file>_data/site.yml</file>
+      <content><![CDATA[
+title: Jareth van Bone
+description: Senior Engineer, Creative Consultant, Team Lead
+url: https://vanbone.com
+]]></content>
+    </step>
+
+    <step number="3.3">
+      <action>Update _data/navigation.yml format if needed</action>
+      <notes>
+        <note>Current format should work as-is with Eleventy</note>
+      </notes>
+    </step>
+  </steps>
+
+  <verification>
+    <check>All project files have permalink in front matter</check>
+    <check>_data/site.yml exists with required fields</check>
+    <check>Navigation data loads correctly</check>
+  </verification>
+</task>

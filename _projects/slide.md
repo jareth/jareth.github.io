@@ -1,4 +1,5 @@
 ---
+layout: project
 short_name: slide
 name: SLiDE
 client: Hoodlum / Foxtel / Playmaker
@@ -32,11 +33,12 @@ Television category, going up against the industry giants like Hulu, HBO, and PB
 ![Animated graphic novel scene](https://assets.vanbone.com/images/slide_3.jpg "Animated graphic novel scene")
 ![High quality videos](https://assets.vanbone.com/images/slide_2.jpg "High quality videos")
 
-{% include video.html
-    width=800 height=400
-    poster="https://assets.vanbone.com/images/slide_4.jpg"
-    mp4="https://assets.vanbone.com/videos/Slide_StepByStep.mp4"
-    webm="https://assets.vanbone.com/videos/Slide_StepByStep.webm"
-    ogg="https://assets.vanbone.com/videos/Slide_StepByStep.ogv"
-    f4v="https://assets.vanbone.com/videos/Slide_StepByStep.flv"
+{% include video.html,
+    width: 800,
+    height: 400,
+    poster: "https://assets.vanbone.com/images/slide_4.jpg",
+    mp4: "https://assets.vanbone.com/videos/Slide_StepByStep.mp4",
+    webm: "https://assets.vanbone.com/videos/Slide_StepByStep.webm",
+    ogg: "https://assets.vanbone.com/videos/Slide_StepByStep.ogv",
+    f4v: "https://assets.vanbone.com/videos/Slide_StepByStep.flv"
 %}

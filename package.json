@@ -1,17 +1,26 @@
 {
   "private": true,
   "scripts": {
-    "prod": "NODE_ENV=production yarn run webpack",
-    "dev": "NODE_ENV=development yarn run webpack",
-    "watch": "NODE_ENV=development yarn run webpack --watch"
+    "build:css": "NODE_ENV=production yarn run webpack",
+    "build:html": "eleventy",
+    "build": "yarn run build:html && yarn run build:css && yarn run build:html",
+    "dev:css": "NODE_ENV=development yarn run webpack --watch",
+    "dev:html": "eleventy --serve",
+    "dev": "npm-run-all --parallel dev:*",
+    "start": "yarn run dev"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-navigation": "^1.0.5",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
     "@fullhuman/postcss-purgecss": "^5.0.0",
     "autoprefixer": "^10.4.18",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.10.0",
     "cssnano": "^6.1.0",
+    "js-yaml": "^4.1.1",
     "mini-css-extract-plugin": "^2.8.1",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.31",
     "postcss-loader": "^8.1.1",
     "postcss-nested": "^6.0.1",

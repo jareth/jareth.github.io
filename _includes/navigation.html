@@ -1,5 +1,5 @@
 <nav class="flex-grow flex justify-end items-center">
-    {% for item in site.data.navigation %}
+    {% for item in navigation %}
     <a href="{{ item.link }}"
        class="m-4 font-bold {% if page.url == item.link %}text-red-800{% endif %}">
         {{ item.name }}

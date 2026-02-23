@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<migration-plan>
+  <meta>
+    <title>Jekyll to Eleventy Migration Plan</title>
+    <project>Portfolio Website</project>
+    <created>2026-01-15</created>
+    <goal>Consolidate Ruby + Node toolchain into Node-only using Eleventy</goal>
+  </meta>
+
+  <overview>
+    <current-stack>
+      <tool name="Ruby/Bundler">Jekyll static site generation</tool>
+      <tool name="Node/Yarn">Webpack, Tailwind CSS, PostCSS, PurgeCSS</tool>
+    </current-stack>
+    <target-stack>
+      <tool name="Node/Yarn">Eleventy + Webpack + Tailwind CSS (unified)</tool>
+    </target-stack>
+    <benefits>
+      <benefit>Single package manager (yarn/npm)</benefit>
+      <benefit>Single lock file (yarn.lock)</benefit>
+      <benefit>Simplified CI/CD pipeline</benefit>
+      <benefit>Native Tailwind integration</benefit>
+      <benefit>Faster builds (Eleventy is faster than Jekyll)</benefit>
+    </benefits>
+  </overview>
+
+  <prerequisites>
+    <item>Node.js 18+ installed</item>
+    <item>Backup current working site</item>
+    <item>Create migration branch: git checkout -b eleventy-migration</item>
+  </prerequisites>
+
+  <phases>
+    <!-- ============================================ -->
+    <!-- PHASE 1: Install and Configure Eleventy     -->
+    <!-- ============================================ -->
+    <phase number="1" name="Install and Configure Eleventy">
+      <step number="1.1">
+        <action>Install Eleventy and required plugins</action>
+        <command>yarn add -D @11ty/eleventy @11ty/eleventy-plugin-rss @11ty/eleventy-navigation</command>
+        <notes>
+          <note>eleventy-plugin-rss replaces jekyll-feed</note>
+          <note>eleventy-navigation replaces data-driven nav</note>
+        </notes>
+      </step>
+
+      <step number="1.2">
+        <action>Create Eleventy configuration file</action>
+        <file>.eleventy.js</file>
+        <content><![CDATA[
+const pluginRss = require("@11ty/eleventy-plugin-rss");
+const pluginNavigation = require("@11ty/eleventy-navigation");
+const yaml = require("js-yaml");
+
+module.exports = function(eleventyConfig) {
+  // Plugins
+  eleventyConfig.addPlugin(pluginRss);
+  eleventyConfig.addPlugin(pluginNavigation);
+
+  // Support YAML data files
+  eleventyConfig.addDataExtension("yml", contents => yaml.load(contents));
+
+  // Passthrough copy for assets
+  eleventyConfig.addPassthroughCopy("assets/images");
+  eleventyConfig.addPassthroughCopy("dist");
+
+  // Watch targets
+  eleventyConfig.addWatchTarget("./assets/css/");
+  eleventyConfig.addWatchTarget("./dist/");
+
+  // Collections
+  eleventyConfig.addCollection("projects", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("_projects/*.md");
+  });
+
+  eleventyConfig.addCollection("posts", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("_posts/*.md");
+  });
+
+  // Liquid options (for Jekyll compatibility)
+  eleventyConfig.setLiquidOptions({
+    dynamicPartials: false,
+    strictFilters: false
+  });
+
+  return {
+    dir: {
+      input: ".",
+      output: "_site",
+      includes: "_includes",
+      layouts: "_layouts",
+      data: "_data"
+    },
+    templateFormats: ["html", "md", "liquid"],
+    markdownTemplateEngine: "liquid",
+    htmlTemplateEngine: "liquid"
+  };
+};
+]]></content>
+      </step>
+
+      <step number="1.3">
+        <action>Install js-yaml for YAML data file support</action>
+        <command>yarn add -D js-yaml</command>
+      </step>
+
+      <step number="1.4">
+        <action>Create .eleventyignore file</action>
+        <file>.eleventyignore</file>
+        <content><![CDATA[
+node_modules/
+README.md
+CLAUDE.md
+eleventy-migration.xml
+_site/
+dist/
+*.config.js
+]]></content>
+      </step>
+    </phase>
+
+    <!-- ============================================ -->
+    <!-- PHASE 2: Update Templates for Eleventy      -->
+    <!-- ============================================ -->
+    <phase number="2" name="Update Templates for Eleventy">
+      <step number="2.1">
+        <action>Update _layouts/default.html</action>
+        <changes>
+          <change from="site.data.manifest['main.css']" to="manifest['main.css']" />
+          <change from="site.data.manifest['main.js']" to="manifest['main.js']" />
+          <change from="jekyll.environment == 'production'" to="eleventy.env.runMode == 'build'" />
+          <change from="site.data.navigation" to="navigation" />
+        </changes>
+        <notes>
+          <note>Eleventy uses simpler data access: data files are available directly by filename</note>
+          <note>site.title becomes site.title (same in _data/site.yml or front matter)</note>
+        </notes>
+      </step>
+
+      <step number="2.2">
+        <action>Update _includes/navigation.html</action>
+        <changes>
+          <change from="site.data.navigation" to="navigation" />
+          <change from="page.url == item.link" to="page.url == item.link" reason="Same syntax works" />
+        </changes>
+      </step>
+
+      <step number="2.3">
+        <action>Update _includes/analytics.html</action>
+        <changes>
+          <change description="No changes needed - static HTML partial" />
+        </changes>
+      </step>
+
+      <step number="2.4">
+        <action>Update _includes/video.html</action>
+        <changes>
+          <change description="No changes needed - uses include parameters which work in Eleventy" />
+        </changes>
+      </step>
+
+      <step number="2.5">
+        <action>Update projects.html listing page</action>
+        <changes>
+          <change from="{% for project in site.projects %}" to="{% for project in collections.projects %}" />
+          <change from="project.url" to="project.url" reason="Same in Eleventy" />
+          <change from="project.preview" to="project.data.preview" reason="Front matter accessed via .data" />
+          <change from="project.name" to="project.data.name" />
+        </changes>
+      </step>
+
+      <step number="2.6">
+        <action>Update blog.html listing page</action>
+        <changes>
+          <change from="{% for post in site.posts %}" to="{% for post in collections.posts %}" />
+          <change from="post.title" to="post.data.title" />
+          <change from="post.url" to="post.url" />
+        </changes>
+      </step>
+
+      <step number="2.7">
+        <action>Update _layouts/project.html</action>
+        <changes>
+          <change from="page.name" to="name" reason="Front matter available directly in layouts" />
+          <change from="page.client" to="client" />
+        </changes>
+      </step>
+
+      <step number="2.8">
+        <action>Update _layouts/post.html</action>
+        <changes>
+          <change from="page.title" to="title" />
+          <change from="page.date" to="date" />
+          <change from="page.author" to="author" />
+          <change from="page.date | date: '%B %d, %Y'" to="date | date: '%B %d, %Y'" />
+        </changes>
+      </step>
+    </phase>
+
+    <!-- ============================================ -->
+    <!-- PHASE 3: Update Front Matter and Data       -->
+    <!-- ============================================ -->
+    <phase number="3" name="Update Front Matter and Data">
+      <step number="3.1">
+        <action>Add permalink to each project file</action>
+        <file>_projects/*.md</file>
+        <example><![CDATA[
+---
+short_name: dance-academy
+name: Dance Academy Online
+client: ABC TV
+preview: https://assets.vanbone.com/images/dao/preview.jpg
+permalink: /projects/{{ short_name }}/
+---
+]]></example>
+        <notes>
+          <note>Jekyll auto-generated URLs for collections; Eleventy needs explicit permalinks</note>
+        </notes>
+      </step>
+
+      <step number="3.2">
+        <action>Create _data/site.yml for global site data</action>
+        <file>_data/site.yml</file>
+        <content><![CDATA[
+title: Jareth van Bone
+description: Senior Engineer, Creative Consultant, Team Lead
+url: https://vanbone.com
+]]></content>
+      </step>
+
+      <step number="3.3">
+        <action>Update _data/navigation.yml format if needed</action>
+        <notes>
+          <note>Current format should work as-is with Eleventy</note>
+        </notes>
+      </step>
+    </phase>
+
+    <!-- ============================================ -->
+    <!-- PHASE 4: Update Build Pipeline              -->
+    <!-- ============================================ -->
+    <phase number="4" name="Update Build Pipeline">
+      <step number="4.1">
+        <action>Update package.json scripts</action>
+        <file>package.json</file>
+        <content><![CDATA[
+{
+  "scripts": {
+    "build:css": "NODE_ENV=production webpack",
+    "build:html": "eleventy",
+    "build": "npm run build:html && npm run build:css",
+    "dev:css": "NODE_ENV=development webpack --watch",
+    "dev:html": "eleventy --serve",
+    "dev": "npm-run-all --parallel dev:*",
+    "start": "npm run dev"
+  }
+}
+]]></content>
+      </step>
+
+      <step number="4.2">
+        <action>Install npm-run-all for parallel scripts</action>
+        <command>yarn add -D npm-run-all</command>
+      </step>
+
+      <step number="4.3">
+        <action>Update tailwind.config.js content paths</action>
+        <file>tailwind.config.js</file>
+        <change from="./_site/**/*.{html,js}" to="./_site/**/*.{html,js}" />
+        <notes>
+          <note>Path stays the same since output is still _site/</note>
+        </notes>
+      </step>
+
+      <step number="4.4">
+        <action>Update purgecss.config.js if needed</action>
+        <notes>
+          <note>Should work as-is since it scans _site/</note>
+        </notes>
+      </step>
+    </phase>
+
+    <!-- ============================================ -->
+    <!-- PHASE 5: SEO and Feed Equivalents           -->
+    <!-- ============================================ -->
+    <phase number="5" name="SEO and Feed Configuration">
+      <step number="5.1">
+        <action>Create feed.njk for RSS (replaces jekyll-feed)</action>
+        <file>feed.njk</file>
+        <content><![CDATA[
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.title }}</title>
+  <link href="{{ site.url }}/feed.xml" rel="self"/>
+  <link href="{{ site.url }}/"/>
+  <updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>{{ site.url }}/</id>
+  <author>
+    <name>Jareth van Bone</name>
+  </author>
+  {%- for post in collections.posts | reverse %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ site.url }}{{ post.url }}"/>
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ site.url }}{{ post.url }}</id>
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(site.url) }}</content>
+  </entry>
+  {%- endfor %}
+</feed>
+]]></content>
+      </step>
+
+      <step number="5.2">
+        <action>Create sitemap.njk (replaces jekyll-sitemap)</action>
+        <file>sitemap.njk</file>
+        <content><![CDATA[
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {%- for page in collections.all %}
+  {%- if page.url %}
+  <url>
+    <loc>{{ site.url }}{{ page.url }}</loc>
+    <lastmod>{{ page.date | date: "%Y-%m-%d" }}</lastmod>
+  </url>
+  {%- endif %}
+  {%- endfor %}
+</urlset>
+]]></content>
+      </step>
+
+      <step number="5.3">
+        <action>Add SEO meta tags to default.html (replaces jekyll-seo-tag)</action>
+        <location>_layouts/default.html head section</location>
+        <content><![CDATA[
+<meta name="description" content="{{ description | default: site.description }}">
+<meta property="og:title" content="{{ title | default: site.title }}">
+<meta property="og:description" content="{{ description | default: site.description }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:type" content="website">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+]]></content>
+      </step>
+    </phase>
+
+    <!-- ============================================ -->
+    <!-- PHASE 6: GitHub Actions Deployment          -->
+    <!-- ============================================ -->
+    <phase number="6" name="GitHub Actions Deployment">
+      <step number="6.1">
+        <action>Create GitHub Actions workflow</action>
+        <file>.github/workflows/deploy.yml</file>
+        <content><![CDATA[
+name: Build and Deploy
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build Eleventy
+        run: yarn run build:html
+
+      - name: Build CSS (production)
+        run: yarn run build:css
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+]]></content>
+      </step>
+
+      <step number="6.2">
+        <action>Configure GitHub Pages to use Actions</action>
+        <instructions>
+          <instruction>Go to repository Settings > Pages</instruction>
+          <instruction>Under "Build and deployment", select "GitHub Actions"</instruction>
+        </instructions>
+      </step>
+    </phase>
+
+    <!-- ============================================ -->
+    <!-- PHASE 7: Cleanup                            -->
+    <!-- ============================================ -->
+    <phase number="7" name="Cleanup">
+      <step number="7.1">
+        <action>Remove Ruby files</action>
+        <files-to-delete>
+          <file>Gemfile</file>
+          <file>Gemfile.lock</file>
+          <file>_config.yml</file>
+        </files-to-delete>
+      </step>
+
+      <step number="7.2">
+        <action>Update .gitignore</action>
+        <remove>
+          <line>_site/</line>
+        </remove>
+        <notes>
+          <note>_site/ no longer needs to be ignored if using GitHub Actions</note>
+          <note>Or keep it ignored if you prefer not to commit build output</note>
+        </notes>
+      </step>
+
+      <step number="7.3">
+        <action>Remove dist/ from git tracking (optional)</action>
+        <command>git rm -r --cached dist/</command>
+        <notes>
+          <note>With GitHub Actions, dist/ is built during deployment</note>
+          <note>No longer need to commit hashed assets</note>
+        </notes>
+      </step>
+
+      <step number="7.4">
+        <action>Update CLAUDE.md with new build instructions</action>
+        <new-commands>
+          <setup>yarn install</setup>
+          <development>yarn run dev</development>
+          <production>yarn run build</production>
+        </new-commands>
+      </step>
+    </phase>
+  </phases>
+
+  <!-- ============================================ -->
+  <!-- TEMPLATE CONVERSION REFERENCE               -->
+  <!-- ============================================ -->
+  <template-conversion-reference>
+    <conversion name="Data Access">
+      <jekyll>{{ site.data.filename.key }}</jekyll>
+      <eleventy>{{ filename.key }}</eleventy>
+    </conversion>
+    <conversion name="Collection Loop">
+      <jekyll>{% for item in site.collection_name %}</jekyll>
+      <eleventy>{% for item in collections.collection_name %}</eleventy>
+    </conversion>
+    <conversion name="Front Matter in Loop">
+      <jekyll>{{ item.field }}</jekyll>
+      <eleventy>{{ item.data.field }}</eleventy>
+    </conversion>
+    <conversion name="Front Matter in Layout">
+      <jekyll>{{ page.field }}</jekyll>
+      <eleventy>{{ field }}</eleventy>
+    </conversion>
+    <conversion name="Environment Check">
+      <jekyll>{% if jekyll.environment == 'production' %}</jekyll>
+      <eleventy>{% if eleventy.env.runMode == 'build' %}</eleventy>
+    </conversion>
+    <conversion name="Include with Parameters">
+      <jekyll>{% include video.html id="123" %}</jekyll>
+      <eleventy>{% include "video.html", id: "123" %}</eleventy>
+      <note>Eleventy requires quotes around filename and comma-separated params</note>
+    </conversion>
+    <conversion name="Current Page URL">
+      <jekyll>{{ page.url }}</jekyll>
+      <eleventy>{{ page.url }}</eleventy>
+      <note>Same syntax</note>
+    </conversion>
+    <conversion name="Date Formatting">
+      <jekyll>{{ page.date | date: "%B %d, %Y" }}</jekyll>
+      <eleventy>{{ date | date: "%B %d, %Y" }}</eleventy>
+      <note>Liquid date filter works the same</note>
+    </conversion>
+  </template-conversion-reference>
+
+  <!-- ============================================ -->
+  <!-- TESTING CHECKLIST                           -->
+  <!-- ============================================ -->
+  <testing-checklist>
+    <category name="Pages">
+      <item>Homepage loads correctly</item>
+      <item>About page renders markdown</item>
+      <item>Projects listing shows all 6 projects</item>
+      <item>Blog listing shows posts</item>
+      <item>404 page works</item>
+    </category>
+    <category name="Projects">
+      <item>Each project page has correct URL</item>
+      <item>Project layout displays name and client</item>
+      <item>Video includes work correctly</item>
+      <item>External images load from assets.vanbone.com</item>
+    </category>
+    <category name="Styling">
+      <item>Tailwind CSS loads correctly</item>
+      <item>Navigation highlights current page</item>
+      <item>Responsive design works</item>
+      <item>Quicksand font loads</item>
+    </category>
+    <category name="SEO and Feeds">
+      <item>/feed.xml generates valid Atom feed</item>
+      <item>/sitemap.xml lists all pages</item>
+      <item>Meta tags present in page source</item>
+    </category>
+    <category name="Build">
+      <item>yarn run dev starts local server</item>
+      <item>yarn run build produces production output</item>
+      <item>CSS is purged in production build</item>
+      <item>Asset hashing works via manifest</item>
+    </category>
+    <category name="Deployment">
+      <item>GitHub Action triggers on push</item>
+      <item>Build completes successfully</item>
+      <item>Site deploys to GitHub Pages</item>
+      <item>All pages accessible on live site</item>
+    </category>
+  </testing-checklist>
+
+  <!-- ============================================ -->
+  <!-- ROLLBACK PLAN                               -->
+  <!-- ============================================ -->
+  <rollback-plan>
+    <step number="1">Keep migration on separate branch until fully tested</step>
+    <step number="2">Do not delete Gemfile/Gemfile.lock until deployment verified</step>
+    <step number="3">If issues arise: git checkout master to restore Jekyll version</step>
+    <step number="4">GitHub Pages can be reconfigured to use Jekyll if needed</step>
+  </rollback-plan>
+
+  <!-- ============================================ -->
+  <!-- FILES SUMMARY                               -->
+  <!-- ============================================ -->
+  <files-summary>
+    <new-files>
+      <file>.eleventy.js</file>
+      <file>.eleventyignore</file>
+      <file>feed.njk</file>
+      <file>sitemap.njk</file>
+      <file>_data/site.yml</file>
+      <file>.github/workflows/deploy.yml</file>
+    </new-files>
+    <modified-files>
+      <file>package.json</file>
+      <file>_layouts/default.html</file>
+      <file>_layouts/project.html</file>
+      <file>_layouts/post.html</file>
+      <file>_includes/navigation.html</file>
+      <file>projects.html</file>
+      <file>blog.html</file>
+      <file>_projects/*.md (add permalinks)</file>
+      <file>.gitignore</file>
+      <file>CLAUDE.md</file>
+    </modified-files>
+    <deleted-files>
+      <file>Gemfile</file>
+      <file>Gemfile.lock</file>
+      <file>_config.yml</file>
+    </deleted-files>
+  </files-summary>
+</migration-plan>

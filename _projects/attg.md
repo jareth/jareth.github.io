@@ -1,4 +1,5 @@
 ---
+layout: project
 short_name: attg
 name: Australia - The Time Traveller's Guide
 client: Essential Media / ABC1

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<task>
+  <meta>
+    <id>04</id>
+    <name>Update Build Pipeline</name>
+    <phase>4</phase>
+    <status>pending</status>
+    <dependencies>01</dependencies>
+  </meta>
+
+  <description>
+    Update package.json scripts and build tooling for Eleventy workflow.
+  </description>
+
+  <steps>
+    <step number="4.1">
+      <action>Update package.json scripts</action>
+      <file>package.json</file>
+      <content><![CDATA[
+{
+  "scripts": {
+    "build:css": "NODE_ENV=production webpack",
+    "build:html": "eleventy",
+    "build": "npm run build:html && npm run build:css",
+    "dev:css": "NODE_ENV=development webpack --watch",
+    "dev:html": "eleventy --serve",
+    "dev": "npm-run-all --parallel dev:*",
+    "start": "npm run dev"
+  }
+}
+]]></content>
+    </step>
+
+    <step number="4.2">
+      <action>Install npm-run-all for parallel scripts</action>
+      <command>yarn add -D npm-run-all</command>
+    </step>
+
+    <step number="4.3">
+      <action>Update tailwind.config.js content paths</action>
+      <file>tailwind.config.js</file>
+      <change from="./_site/**/*.{html,js}" to="./_site/**/*.{html,js}" />
+      <notes>
+        <note>Path stays the same since output is still _site/</note>
+      </notes>
+    </step>
+
+    <step number="4.4">
+      <action>Update purgecss.config.js if needed</action>
+      <notes>
+        <note>Should work as-is since it scans _site/</note>
+      </notes>
+    </step>
+  </steps>
+
+  <verification>
+    <check>yarn run dev starts both Eleventy and Webpack watchers</check>
+    <check>yarn run build produces production output in _site/</check>
+    <check>CSS is properly processed by Tailwind</check>
+  </verification>
+</task>
