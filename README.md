@@ -6,9 +6,9 @@ Personal portfolio website deployed via GitHub Pages.
 ## Technology Stack
 
 - **Eleventy** (v3) - Static site generator
-- **Tailwind CSS** (v3.4) - Utility-first CSS framework
+- **Tailwind CSS** (v4) - Utility-first CSS framework
 - **Webpack** (v5) - Asset bundler
-- **PostCSS** - CSS processing with autoprefixer, cssnano, and PurgeCSS
+- **PostCSS** - CSS processing with `@tailwindcss/postcss` and PurgeCSS
 - **GitHub Actions** - Automated build and deployment
 
 ## Directory Structure
@@ -117,20 +117,21 @@ Update `_data/navigation.yml`:
 
 ### Tailwind Configuration
 
-- Custom font: Quicksand (configured in `tailwind.config.js`)
+- Configured CSS-first in `assets/css/site.css` (`@theme`, `@source`, `@custom-variant`); there is no `tailwind.config.js`
+- Custom font: Quicksand (`--font-sans` in `@theme`)
 - Primary brand color: `bg-teal-300`
-- Content scanning: `./_site/**/*.{html,js}`
+- Content scanning: explicit `@source` paths, including the built `./_site/**/*.{html,js}`
 
 ### Custom CSS
 
-Add custom styles to `assets/css/site.css` after the Tailwind directives:
+Add custom styles to `assets/css/site.css` after the Tailwind import, inside the matching layer:
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss" source(none);
 
-/* Custom styles here */
+@layer components {
+    /* Custom component classes here */
+}
 ```
 
 ## Asset Pipeline

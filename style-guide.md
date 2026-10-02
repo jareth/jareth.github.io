@@ -114,15 +114,13 @@ Reusable component classes defined in `assets/css/site.css` using `@layer compon
 
 ## Custom Utilities
 
-Defined in `tailwind.config.js`:
+Defined in the `@theme` block of `assets/css/site.css`:
 
-```javascript
-boxShadow: {
-    'amber': '0 0 20px rgba(245, 158, 11, 0.25)',      // Card hover glow (light mode)
-    'amber-dot': '0 0 8px rgba(245, 158, 11, 0.6)',    // Accent dot glow
-    'amber-glow': '0 0 30px rgba(245, 158, 11, 0.4), 0 0 60px rgba(245, 158, 11, 0.2)',  // Enhanced card hover (dark mode)
-    'amber-text': '0 0 10px rgba(245, 158, 11, 0.8)'   // Text glow effect
-}
+```css
+--shadow-amber: 0 0 20px rgba(245, 158, 11, 0.25);       /* Card hover glow (light mode) */
+--shadow-amber-dot: 0 0 8px rgba(245, 158, 11, 0.6);     /* Accent dot glow */
+--shadow-amber-glow: 0 0 30px rgba(245, 158, 11, 0.4), 0 0 60px rgba(245, 158, 11, 0.2);  /* Enhanced card hover (dark mode) */
+--shadow-amber-text: 0 0 10px rgba(245, 158, 11, 0.8);   /* Text glow effect */
 ```
 
 ### Dark Mode Toggle

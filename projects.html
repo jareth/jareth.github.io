@@ -28,7 +28,7 @@ layout: default
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {% for project in collections.projects %}{% if project.data.category == "entertainment" %}
         <a href="{{ project.url }}" class="card block hover:scale-[1.02] transition-transform">
-            {% if project.data.preview %}<img src="{{ project.data.preview }}" alt="{{ project.data.name }}" class="w-full rounded mb-4"/>{% endif %}
+            {% if project.data.preview %}<img src="{{ project.data.preview }}" alt="{{ project.data.name }}" class="w-full rounded-sm mb-4"/>{% endif %}
             <h3 class="card-title">{{ project.data.name }}</h3>
             <p class="card-text-muted font-mono text-xs mb-2">{{ project.data.client }}</p>
             <p class="card-text-muted">{{ project.templateContent | strip_html | truncate: 120 }}</p>

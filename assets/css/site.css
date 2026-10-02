@@ -1,26 +1,62 @@
-@tailwind base;
+@import "tailwindcss" source(none);
 
-h1 {
-    @apply text-2xl;
+@source "../../_site/**/*.{html,js}";
+@source "../../_layouts/**/*.html";
+@source "../../_includes/**/*.html";
+@source "../../*.html";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: Quicksand, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    /* Keep the v3 amber scale: v4's OKLCH amber is more saturated and would shift the theme */
+    --color-amber-50: #fffbeb;
+    --color-amber-100: #fef3c7;
+    --color-amber-200: #fde68a;
+    --color-amber-300: #fcd34d;
+    --color-amber-400: #fbbf24;
+    --color-amber-500: #f59e0b;
+    --color-amber-600: #d97706;
+    --color-amber-700: #b45309;
+    --color-amber-800: #92400e;
+    --color-amber-900: #78350f;
+    --color-amber-950: #451a03;
+
+    --shadow-amber: 0 0 20px rgba(245, 158, 11, 0.25);
+    --shadow-amber-dot: 0 0 8px rgba(245, 158, 11, 0.6);
+    --shadow-amber-glow: 0 0 30px rgba(245, 158, 11, 0.4), 0 0 60px rgba(245, 158, 11, 0.2);
+    --shadow-amber-text: 0 0 10px rgba(245, 158, 11, 0.8);
 }
 
-h2 {
-    @apply text-xl;
-}
+@layer base {
+    /* Tailwind v4 no longer gives buttons a pointer cursor */
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
 
-h3 {
-    @apply text-lg;
-}
+    h1 {
+        @apply text-2xl;
+    }
 
-ol {
-    @apply list-decimal list-inside;
-}
+    h2 {
+        @apply text-xl;
+    }
 
-ul {
-    @apply list-disc list-inside;
-}
+    h3 {
+        @apply text-lg;
+    }
 
-@tailwind components;
+    ol {
+        @apply list-decimal list-inside;
+    }
+
+    ul {
+        @apply list-disc list-inside;
+    }
+}
 
 @layer components {
     .card {
@@ -60,7 +96,7 @@ ul {
     }
 
     .tech-tag {
-        @apply text-xs font-mono px-2 py-1 bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-amber-500 rounded;
+        @apply text-xs font-mono px-2 py-1 bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-amber-500 rounded-sm;
     }
 
     .section-title {
@@ -104,10 +140,6 @@ ul {
         background: none;
     }
 }
-
-/* Write your styles above this line. */
-
-@tailwind utilities;
 
 .prose h3::before {
     content: '> ';
