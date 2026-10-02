@@ -6,7 +6,8 @@ module.exports = {
         require('autoprefixer'),
         ...process.env.NODE_ENV === 'production'
             ? [require('@fullhuman/postcss-purgecss')({
-                content: ['./_site/**/*.html']
+                // purgecss 8 import()s this CJS file and ignores it, so pass it explicitly
+                ...require('./purgecss.config.js')
               })]
             : []
     ]
