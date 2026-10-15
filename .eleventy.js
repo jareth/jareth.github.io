@@ -1,4 +1,4 @@
-const pluginRss = require("@11ty/eleventy-plugin-rss");
+const { rssPlugin: pluginRss } = require("@11ty/eleventy-plugin-rss");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const yaml = require("js-yaml");
 
