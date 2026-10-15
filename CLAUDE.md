@@ -60,4 +60,6 @@ Push to `master` branch triggers GitHub Actions workflow (`.github/workflows/dep
 3. Builds CSS with PurgeCSS
 4. Deploys `_site/` to GitHub Pages
 
+Pull requests to `master` run a full `yarn run build` (`.github/workflows/build.yml`) so build breakages are caught before merge.
+
 Both `_site/` and `dist/` are gitignored - builds happen in CI.
